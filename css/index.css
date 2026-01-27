@@ -1,0 +1,24 @@
+/* universal styling */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  --accent: #1B5EB6;
+  --bg-theme: #fff;
+
+  --fg: #000;
+}
+
+
+body {
+  background: color-mix(in srgb, var(--accent) 50%, var(--bg-theme) 50%);
+  color: var(--fg);
+
+  font-family: "Inter", sans-serif;
+
+  padding: 0;
+  margin: 0;
+
+  min-width: 100dvw;
+  min-height: 100dvh;
+}
+

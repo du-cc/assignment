@@ -1,0 +1,86 @@
+/* page specific styling (index.html) */
+
+.video {
+  width: 100%;
+  height: 100dvh;
+}
+
+.video > video {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.video > .overlay {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+    height: 20%;
+     background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--accent) 60%, var(--bg-theme) 40%),
+    transparent
+  );
+}
+
+.video > .title {
+  position: absolute;
+  bottom: 5vh;
+  left: 5vw;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.video > .title > span:nth-child(1) {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.video > .title > span:nth-child(2) {
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+
+.video > .more {
+  position: absolute;
+  bottom: 7vh;
+  right: 5vw;
+
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+
+  font-size: 2em;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.video > .more::after {
+  content: "";
+  position: absolute;
+  bottom: -0.3em;
+
+  background: var(--fg);
+
+  width: 0;
+  height: 2px;
+
+  transition-duration: 0.3s;
+}
+
+.video .more:hover::after {
+  width: 100%;
+}
+
+.video > .copyright {
+  position: absolute;
+  bottom: 2vh;
+  right: 2vw;
+}
