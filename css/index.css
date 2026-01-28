@@ -1,15 +1,40 @@
-/* universal styling */
+/* file: * */
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 :root {
   --accent: #1b5eb6;
-  --bg-theme: #fff;
 
-  --fg: #000;
+  --bg-theme: #000;
+  --bg: color-mix(in srgb, var(--accent) 30%, var(--bg-theme) 70%);
+
+  --fg: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-theme: #000;
+    --fg: #fff;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-theme: #fff;
+    --fg: #000;
+  }
+}
+
+* {
+  transition:
+    color 0.3s,
+    background-color 0.3s !important;
 }
 
 html {
@@ -17,11 +42,23 @@ html {
 }
 
 body {
-  background: color-mix(in srgb, var(--accent) 50%, var(--bg-theme) 50%);
+  background: var(--bg);
   color: var(--fg);
 
   font-family: "Inter", sans-serif;
 
   padding: 0;
   margin: 0;
+}
+
+/* components */
+.theme_switch {
+  position: absolute;
+  right: 2vw;
+  top: 2vh;
+
+  color: #fff !important;
+
+  font-size: 1.3em;
+  cursor: pointer;
 }

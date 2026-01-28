@@ -1,8 +1,11 @@
-/* page specific styling (index.html) */
+/* file: index.html */
 
+/* #intro */
 .intro {
   width: 100%;
   height: 100dvh;
+
+  color: #fff !important;
 }
 
 .intro > video {
@@ -33,34 +36,27 @@
 
   width: 100%;
 
-  padding: clamp(2em, 5vw, 5em) clamp(2em, 3vw, 5em);
+  padding: 7vh 3vw;
 
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-
-  background: linear-gradient(
-    to top,
-    color-mix(in srgb, var(--accent) 60%, var(--bg-theme) 40%),
-    transparent
-  );
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2em;
 }
 
 .intro > .text_container > .title {
   display: flex;
   flex-direction: column;
   gap: 1em;
+
+  width: 100%;
 }
 
-.intro > .text_container > .title > span:nth-child(1) {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+.intro > .text_container > .title > span {
+  font-size: 5em;
   font-weight: 700;
-}
-
-.intro > .text_container > .title > span:nth-child(2) {
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  font-weight: 300;
+  align-self: flex-start;
 }
 
 .intro > .text_container > .more {
@@ -68,12 +64,13 @@
 
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 1em;
 
-  color: var(--fg);
+  color: #fff;
   text-decoration: none;
-  font-size: clamp(1.2rem, 3vw, 2em);
-  font-weight: 600;
+  font-size: 2em;
+  font-weight: 500;
 
   cursor: pointer;
 }
@@ -83,7 +80,7 @@
   position: absolute;
   bottom: -0.3em;
 
-  background: var(--fg);
+  background: #fff;
 
   width: 0;
   height: 2px;
@@ -101,19 +98,31 @@
   right: 2vw;
 }
 
-/* smooth video to page transition */
+/* #about */
+.about {
+  height: 100dvh;
 
-.overlay:not(.intro > .overlay) {
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
 
-  width: 100%;
-  height: 20%;
+.about > .what {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 
-  z-index: -1;
+  padding: 2vh 5vw;
+}
 
-  background: linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--accent) 60%, var(--bg-theme) 40%),
-    transparent
-  );
+.about > .what > span:nth-child(1) {
+  font-size: 1.7em;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.about > .what > span:nth-child(2) {
+  font-size: 7em;
+  font-weight: 700;
+  color: var(--fg);
 }

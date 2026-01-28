@@ -16,26 +16,28 @@
     <link rel="stylesheet" href="css/pages/index.css" />
     <title>Home</title>
   </head>
-  <body>
+  <body style="opacity: 0; transition: opacity 0.3s ease-in-out;">
     <div class="intro">
-      <video muted autoplay>
+      <video muted>
         <source src="assets/index/hero_4k.mp4" type="video/mp4" />
       </video>
       <div class="text_container">
         <div class="title">
-          <span>Stories of Warming Poles.</span>
           <span>It is time for us to change.</span>
         </div>
-        <a class="more" href="#crisis">
+        <a class="more" href="#about">
           <i class="fa-solid fa-arrow-right"></i><span>Learn more.</span>
         </a>
       </div>
       <span class="copyright">&copy; 2026 National Geographic</span>
     </div>
-    <div class="overlay"></div>
-
-    <div class="crisis" id="crisis">
-      <h1>Current climate issues</h1>
+    <div class="about" id="about">
+      <div class="what">
+        <span>What is happening?</span>
+        <span>Climate crisis.</span>
+      </div>
     </div>
   </body>
+  <script src="scripts/loader.js"></script>
+  <script src="scripts/theme.js"></script>
 </html>
