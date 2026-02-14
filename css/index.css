@@ -17,19 +17,6 @@
   --fg: #fff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-theme: #000;
-    --fg: #fff;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg-theme: #fff;
-    --fg: #000;
-  }
-}
 
 * {
   transition:
