@@ -12,7 +12,7 @@
   --accent: #1b5eb6;
 
   --bg-theme: #000;
-  --bg: color-mix(in srgb, var(--accent) 30%, var(--bg-theme) 70%);
+  --bg: #000;
 
   --fg: #fff;
 }
@@ -39,6 +39,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
 }
 
 body {
@@ -52,7 +53,7 @@ body {
 }
 
 /* components */
-.theme_switch {
+/* .theme_switch {
   position: absolute;
   right: 2vw;
   top: 2vh;
@@ -61,4 +62,4 @@ body {
 
   font-size: 1.3em;
   cursor: pointer;
-}
+} */

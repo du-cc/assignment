@@ -5,6 +5,8 @@
   width: 100%;
   height: 100dvh;
 
+  scroll-snap-align: start;
+
   color: #fff !important;
 }
 
@@ -17,17 +19,13 @@
   object-fit: cover;
 }
 
-.intro > .overlay {
+.intro::before {
+  content: "";
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+  display: block;
   position: absolute;
-  bottom: 0;
-
   width: 100%;
-  height: 20%;
-  background: linear-gradient(
-    to top,
-    color-mix(in srgb, var(--accent) 60%, var(--bg-theme) 40%),
-    transparent
-  );
+  height: 100%;
 }
 
 .intro > .text_container {
@@ -98,31 +96,174 @@
   right: 2vw;
 }
 
-/* #about */
-.about {
-  height: 100dvh;
+/* #why, #how */
+
+.why {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15, 15, 15, 0.9) 0%,
+      rgba(44, 44, 44, 0.7) 100%
+    ),
+    url(/assets/index/pollution.webp);
+}
+
+.how {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(20, 20, 20, 0.95) 0%,
+      rgba(75, 30, 0, 0.6) 100%
+    ),
+    url(/assets/index/melting.webp);
+}
+
+.infogrid {
+  padding: 5em 10em;
 
   display: flex;
   flex-direction: column;
   gap: 2em;
+  min-height: 100dvh;
+
+  background-size: cover;
+  background-position: center;
+
+  scroll-snap-align: start;
 }
 
-.about > .what {
+@media screen and (max-width: 800px) {
+  .infogrid {
+    padding: 3em 2em;
+  }
+}
+
+.infogrid > h1 {
+  font-size: 5em;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.infogrid > .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3em;
+
+  margin: 5em 0;
+}
+
+@media screen and (max-width: 800px) {
+  .infogrid > .container {
+    grid-template-columns: 1fr;
+    height: max-content;
+  }
+}
+
+.infogrid > .container > .item {
+  background-repeat: no-repeat !important;
+  background-size: 100%;
+  background-position: center !important;
+
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1em;
+  position: relative;
 
-  padding: 2vh 5vw;
+  padding: 1.5em;
+
+  font-size: 2em;
+
+  overflow: hidden;
+
+  /* border: 0.5px solid rgba(255, 255, 255, 0.3); */
+  box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 1em;
 }
 
-.about > .what > span:nth-child(1) {
-  font-size: 1.7em;
+@media screen and (min-width: 800px) {
+  .why > .container > .item:nth-child(1) {
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+  .how > .container > .item:nth-child(1) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  .how > .container > .item:nth-child(4) {
+    grid-column-start: 2;
+    grid-column-end: 4;
+  }
+}
+
+.infogrid > .container > .item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  border-radius: 1em;
+
+  transition: background 0.5s;
+}
+
+.infogrid > .container > .item:hover::after {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.infogrid > .container > .item > img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  border-radius: 1em;
+
+  transition: transform 1s cubic-bezier(0.44, 0, 0, 0.905) !important;
+}
+
+.infogrid > .container > .item:hover > img {
+  transform: scale(1.1);
+}
+
+.infogrid > .container > .item > span {
+  position: static;
+  z-index: 1;
+}
+
+.infogrid > .container > .item > span:not(.desc) {
+  left: 0.5em;
+  top: 0.5em;
+
+  font-size: 1.5em;
   font-weight: 600;
-  color: var(--accent);
 }
 
-.about > .what > span:nth-child(2) {
-  font-size: 7em;
-  font-weight: 700;
-  color: var(--fg);
+.infogrid > .container > .item > .desc {
+  bottom: 0.5em;
+  left: 0.5em;
+
+  font-size: 1em;
+  color: rgba(255, 255, 255, 0.6);
+
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out !important;
+}
+
+.infogrid > .container > .item:hover > .desc {
+  opacity: 1;
+}
+
+@media screen and (max-width: 800px) {
+  .infogrid > .container > .item > span:not(.desc) {
+    font-size: 1em;
+  }
+  .infogrid > .container > .item > .desc {
+    font-size: 0.7em;
+  }
 }
