@@ -34,7 +34,7 @@
 
   width: 100%;
 
-  padding: 7vh 3vw;
+  padding: 4em 3em;
 
   display: flex;
   flex-direction: column;
@@ -57,7 +57,13 @@
   align-self: flex-start;
 }
 
-.intro > .text_container > .more {
+.intro > .text_container > .a {
+  display: flex;
+  flex-direction: row;
+  gap: 5em;
+}
+
+.intro > .text_container > .a > a {
   position: relative;
 
   display: flex;
@@ -65,7 +71,7 @@
   align-items: center;
   gap: 1em;
 
-  color: #fff;
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: clamp(1rem, 3.5vw, 2rem);
   font-weight: 500;
@@ -73,7 +79,7 @@
   cursor: pointer;
 }
 
-.intro > .text_container > .more::after {
+.intro > .text_container > .a > a::after {
   content: "";
   position: absolute;
   bottom: -0.3em;
@@ -86,7 +92,7 @@
   transition-duration: 0.3s;
 }
 
-.intro > .text_container > .more:hover::after {
+.intro > .text_container > .a > a:hover::after {
   width: 100%;
 }
 
@@ -98,49 +104,35 @@
 
 /* #why, #how */
 .infogrid {
-  padding: 5em 7em;
+  padding: 13em 7em;
 
   display: flex;
   flex-direction: column;
   gap: 2em;
   /* min-height: 100dvh; */
 
-  background-size: cover;
-  background-position: center;
+  /* background-size: cover;
+  background-position: center; */
 
   /* scroll-snap-align: start; */
 }
 
 @media screen and (max-width: 800px) {
   .infogrid {
-    padding: 3em 2em;
+    padding: 5em 2em;
   }
 }
 
 .why {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(15, 15, 15, 0.9) 0%,
-      rgba(44, 44, 44, 0.7) 100%
-    ),
-    url(../../assets/index/pollution.webp);
-  padding-bottom: 5em;
+  background: linear-gradient(to bottom, #1c1b1a, #262422);
 }
 
-.how {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(20, 20, 20, 0.95) 0%,
-      rgba(75, 30, 0, 0.6) 100%
-    ),
-    url(../../assets/index/melting.webp);
-  padding-top: 15em;
+.what {
+  background: linear-gradient(to bottom, #262422, #594a3a);
 }
 
 .infogrid > h1 {
-  font-size: clamp(3rem, 4vw, 5rem);
+  font-size: clamp(4rem, 5vw, 6rem);
   color: rgba(255, 255, 255, 0.7);
   margin: 0;
 }
@@ -175,7 +167,6 @@
 
   overflow: hidden;
 
-  /* border: 0.5px solid rgba(255, 255, 255, 0.3); */
   box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.5);
   border-radius: 1em;
 }
@@ -185,11 +176,11 @@
     grid-row-start: 1;
     grid-row-end: 3;
   }
-  .how > .container > .item:nth-child(1) {
+  .what > .container > .item:nth-child(1) {
     grid-column-start: 1;
     grid-column-end: 3;
   }
-  .how > .container > .item:nth-child(4) {
+  .what > .container > .item:nth-child(4) {
     grid-column-start: 2;
     grid-column-end: 4;
   }
@@ -203,15 +194,21 @@
   height: 100%;
   width: 100%;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
 
   border-radius: 1em;
 
   transition: background 0.5s;
 }
 
+@media (hover: none) {
+  .infogrid > .container > .item::after {
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+
 .infogrid > .container > .item:hover::after {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .infogrid > .container > .item > img {
@@ -236,8 +233,8 @@
 }
 
 .infogrid > .container > .item > span:not(.desc) {
-  left: 0.5em;
-  top: 0.5em;
+  right: 0.5em;
+  bottom: 0.5em;
 
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 600;
@@ -260,73 +257,8 @@
   opacity: 1;
 }
 
-.transition {
-  position: absolute;
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  margin-top: -3vh;
-  padding: 0.5em;
-
-  /* background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8), transparent); */
-  background: rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(20px);
-
-  font-size: clamp(1.5rem, 3vw, 2rem);
-
-  z-index: 10;
-}
-
-/* prefoot */
-.prefoot {
-  padding: 5em;
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 2em;
-}
-
-.prefoot > h1 {
-  font-size: clamp(3rem, 4vw, 4rem);
-  text-decoration: underline solid;
-}
-
-.prefoot > a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  position: relative;
-}
-
-.prefoot > a::after {
-  content: "";
-  position: absolute;
-  bottom: -0.3em;
-
-  background: rgba(255, 255, 255, 0.8);
-
-  width: 0;
-  height: 2px;
-
-  transition: width 0.3s;
-}
-
-.prefoot > a:hover::after {
-  width: 100%;
-}
-
-.prefoot:has(a:hover) {
-  background: rgba(107, 176, 255, 0.7);
+@media (hover: none) {
+  .infogrid > .container > .item > .desc {
+    opacity: 1;
+  }
 }

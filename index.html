@@ -1,10 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <script
-      type="text/javascript"
-      src="/___vscode_livepreview_injected_script"
-    ></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -16,125 +12,133 @@
       href="https://site-assets.fontawesome.com/releases/v7.1.0/css/fontawesome.css"
     />
 
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/pages/index.css" />
     <title>Home</title>
   </head>
   <body>
     <header class="intro">
-      <video muted="" autoplay="">
+      <video muted>
         <source src="assets/index/hero_4k.mp4" type="video/mp4" />
       </video>
       <div class="text_container">
         <div class="title">
           <span>It is time for us to change.</span>
         </div>
-        <a class="more" href="#why">
-          <i class="fa-solid fa-arrow-right"></i><span>Learn more.</span>
-        </a>
+        <div class="a">
+          <a href="#why">
+            <span>Learn more.</span>
+            <i class="fa-solid fa-arrow-down"></i>
+          </a>
+          <a href="#why">
+            <span>Join us.</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
       </div>
       <span class="copyright">© 2026 National Geographic</span>
     </header>
     <div class="grids">
-    <section class="infogrid why" id="why">
-      <h1>Why?</h1>
-      <div class="container">
-        <div class="item">
-          <img src="./assets/index/fossil.jpg" alt="" />
-          <span>Burning fossil fuels</span>
-          <span class="desc"
-            >When we burn fossil fuels like coal and gas to create electricity
-            or power our cars, we release carbon dioxide pollution into the
-            atmosphere.</span
-          >
+      <section class="infogrid why" id="why">
+        <h1>Why is This Happening?</h1>
+        <div class="container">
+          <div class="item">
+            <img src="./assets/index/fossil.jpg" alt="" />
+            <span>Burning fossil fuels</span>
+            <span class="desc"
+              >When we burn fossil fuels like coal and gas to create electricity
+              or power our cars, we release carbon dioxide pollution into the
+              atmosphere.</span
+            >
+          </div>
+          <div class="item">
+            <img src="./assets/index/forest.png" alt="" />
+            <span>Deforestation</span>
+            <span class="desc"
+              >Humans clear vast areas of vegetation worldwide for agriculture,
+              urban and infrastructure development, or to sell products such as
+              timber and palm oil.</span
+            >
+          </div>
+          <div class="item">
+            <img src="./assets/index/agriculture.png" alt="" />
+            <span>Agriculture</span>
+            <span class="desc"
+              >The greenhouse gases emitted from agriculture are methane,
+              nitrous oxide and carbon dioxide. Livestock like cattle and sheep
+              produce a large amount of methane.</span
+            >
+          </div>
+          <div class="item">
+            <img src="./assets/index/transportation.png" alt="" />
+            <span>Transportation</span>
+            <span class="desc"
+              >Greenhouse gases are emitted from burning fossil fuels for cars,
+              trucks, ships, trains and planes.</span
+            >
+          </div>
+          <div class="item">
+            <img src="./assets/index/industry.png" alt="" />
+            <span>Industry manufacturing</span>
+            <span class="desc"
+              >In the manufacturing industry, energy is needed to create steel,
+              cement, aluminium, chemicals, food processing and many other
+              materials, such as paper, that we use every day.</span
+            >
+          </div>
         </div>
-        <div class="item">
-          <img src="./assets/index/forest.png" alt="" />
-          <span>Deforestation</span>
-          <span class="desc"
-            >Humans clear vast areas of vegetation worldwide for agriculture,
-            urban and infrastructure development, or to sell products such as
-            timber and palm oil.</span
-          >
+      </section>
+      <section class="infogrid what">
+        <h1>What Will Happen?</h1>
+        <div class="container">
+          <div class="item">
+            <img src="./assets/index/hot.webp" alt="" />
+            <span>Hotter temperatures</span>
+            <span class="desc"
+              >As greenhouse gas concentrations rise, so does the global surface
+              temperature. The last decade, 2015-2024, is the warmest on
+              record.</span
+            >
+          </div>
+          <div class="item">
+            <img src="./assets/index/sea.webp" alt="" />
+            <span>Rising sea levels</span>
+            <span class="desc"
+              >Increased ocean temperatures are melting glaciers and ice caps
+              worldwide, causing rising sea levels and threatening low-lying
+              islands and coastal cities.</span
+            >
+          </div>
+          <div class="item">
+            <img src="./assets/index/extreme.jpg" alt="" />
+            <span>Intense extreme weather events</span>
+            <span class="desc"
+              >Extreme weather events like bushfires, cyclones, droughts and
+              floods are becoming more frequent and intense due to global
+              warming.</span
+            >
+          </div>
+          <div class="item">
+            <img src="./assets/index/hotwater.jpg" alt="" />
+            <span>Warming oceans</span>
+            <span class="desc"
+              >Warming waters are bleaching coral reefs and driving stronger
+              storms. Rising ocean acidity threatens tiny crustacean populations
+              that would disrupt the entire marine food chain.
+            </span>
+          </div>
         </div>
-        <div class="item">
-          <img src="./assets/index/agriculture.png" alt="" />
-          <span>Agriculture</span>
-          <span class="desc"
-            >The greenhouse gases emitted from agriculture are methane, nitrous
-            oxide and carbon dioxide. Livestock like cattle and sheep produce a
-            large amount of methane.</span
-          >
-        </div>
-        <div class="item">
-          <img src="./assets/index/transportation.png" alt="" />
-          <span>Transportation</span>
-          <span class="desc"
-            >Greenhouse gases are emitted from burning fossil fuels for cars,
-            trucks, ships, trains and planes.</span
-          >
-        </div>
-        <div class="item">
-          <img src="./assets/index/industry.png" alt="" />
-          <span>Industry manufacturing</span>
-          <span class="desc"
-            >In the manufacturing industry, energy is needed to create steel,
-            cement, aluminium, chemicals, food processing and many other
-            materials, such as paper, that we use every day.</span
-          >
-        </div>
-      </div>
-    </section>
-    <section class="transition">
-      <h1>If nothing is done,</h1>
-    </section>
-    <section class="infogrid how">
-      <h1>
-        What? <span style="font-size: 0.5em; opacity: 0.7">will happen</span>
-      </h1>
-      <div class="container">
-        <div class="item">
-          <img src="./assets/index/hot.webp" alt="" />
-          <span>Hotter temperatures</span>
-          <span class="desc"
-            >As greenhouse gas concentrations rise, so does the global surface
-            temperature. The last decade, 2015-2024, is the warmest on
-            record.</span
-          >
-        </div>
-        <div class="item">
-          <img src="./assets/index/sea.webp" alt="" />
-          <span>Rising sea levels</span>
-          <span class="desc"
-            >Increased ocean temperatures are melting glaciers and ice caps
-            worldwide, causing rising sea levels and threatening low-lying
-            islands and coastal cities.</span
-          >
-        </div>
-        <div class="item">
-          <img src="./assets/index/extreme.jpg" alt="" />
-          <span>Intense extreme weather events</span>
-          <span class="desc"
-            >Extreme weather events like bushfires, cyclones, droughts and
-            floods are becoming more frequent and intense due to global
-            warming.</span
-          >
-        </div>
-        <div class="item">
-          <img src="./assets/index/hotwater.jpg" alt="" />
-          <span>Warming oceans</span>
-          <span class="desc"
-            >Warming waters are bleaching coral reefs and driving stronger
-            storms. Rising ocean acidity threatens tiny crustacean populations
-            that would disrupt the entire marine food chain.
-          </span>
-        </div>
-      </div>
-    </section>
-    <footer class="prefoot">
-      <h1>We do not want this to happen.</h1>
-      <a href=""><i class="fa-solid fa-arrow-right"></i>Learn more about our initiative.</a>
-    </footer>
+      </section>
+      <footer class="prefoot">
+        <h1>We can still change the future.</h1>
+        <a href="about.html"
+          ><i class="fa-solid fa-arrow-right"></i>Learn more about our
+          initiative.</a
+        >
+      </footer>
+    </div>
   </body>
-  <!-- <script src="scripts/loader.js"></script> --><!-- <script src="scripts/theme.js"></script> -->
 </html>
