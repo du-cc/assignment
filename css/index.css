@@ -17,7 +17,6 @@
   --fg: #fff;
 }
 
-
 * {
   transition:
     color 0.3s,
@@ -50,6 +49,114 @@ body {
   cursor: pointer;
 } */
 
+/* underlined link */
+a.underlined {
+  position: relative;
+  width: fit-content;
+}
+
+a.underlined::after {
+  content: "";
+  position: absolute;
+  bottom: -0.3em;
+
+  background: #fff;
+
+  width: 0;
+  height: 2px;
+
+  transition-duration: 0.3s;
+}
+
+a.underlined:hover::after {
+  width: 100%;
+}
+
+/* infogrid */
+.infogrid {
+  padding: 13em 7em;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+
+  background: linear-gradient(to bottom, rgb(4, 22, 37), rgb(0, 15, 31));
+}
+
+@media screen and (max-width: 800px) {
+  .infogrid {
+    padding: 5em 2em;
+  }
+}
+
+.infogrid > h1 {
+  font-size: clamp(4rem, 5vw, 6rem);
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.infogrid > span {
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.infogrid > .container {
+  display: grid;
+  gap: 3em;
+
+  margin: 3em 0;
+}
+
+@media screen and (max-width: 800px) {
+  .infogrid > .container {
+    grid-template-columns: 1fr !important;
+    height: max-content !important;
+  }
+}
+
+.infogrid > .container > .item {
+  background-repeat: no-repeat !important;
+  background-size: 100%;
+  background-position: center !important;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+
+  padding: 3em;
+
+  overflow: hidden;
+
+  box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 1em;
+}
+
+.infogrid > .container > .item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  border-radius: 1em;
+
+  transition: background 0.5s;
+}
+
+.infogrid > .container > .item > img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  border-radius: 1em;
+}
+
+
+/* footer */
 .prefoot {
   padding: 5em;
   width: 100%;
@@ -76,25 +183,4 @@ body {
   align-items: center;
   gap: 1em;
   position: relative;
-}
-
-.prefoot > a::after {
-  content: "";
-  position: absolute;
-  bottom: -0.3em;
-
-  background: rgba(255, 255, 255, 0.8);
-
-  width: 0;
-  height: 2px;
-
-  transition: width 0.3s;
-}
-
-.prefoot > a:hover::after {
-  width: 100%;
-}
-
-.prefoot:has(a:hover) {
-  background: rgba(107, 176, 255, 0.7);
 }

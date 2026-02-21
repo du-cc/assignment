@@ -55,8 +55,6 @@ header > span {
 }
 
 header > a {
-  position: relative;
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -71,110 +69,26 @@ header > a {
   z-index: 1;
 }
 
-header > a::after {
-  content: "";
-  position: absolute;
-  bottom: -0.3em;
 
-  background: #fff;
-
-  width: 0;
-  height: 2px;
-
-  transition-duration: 0.3s;
-}
-
-header > a:hover::after {
-  width: 100%;
-}
-
-.infogrid {
-  padding: 13em 7em;
-
-  display: flex;
-  flex-direction: column;
-  gap: 2em;
-
-  background: linear-gradient(to bottom, rgb(4, 22, 37), rgb(0, 15, 31));
-}
-
-@media screen and (max-width: 800px) {
-  .infogrid {
-    padding: 5em 2em;
-  }
-}
-
-.infogrid > h1 {
-  font-size: clamp(4rem, 5vw, 6rem);
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0;
-}
-
-.infogrid > span {
-  font-size: clamp(1.3rem, 3vw, 1.7rem);
-  color: rgba(255, 255, 255, 0.6);
-}
 
 .infogrid > .container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3em;
-
-  margin: 3em 0;
-}
-
-@media screen and (max-width: 800px) {
-  .infogrid > .container {
-    grid-template-columns: 1fr;
-    height: max-content;
-  }
 }
 
 .infogrid > .container > .item {
-  background-repeat: no-repeat !important;
-  background-size: 100%;
-  background-position: center !important;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   gap: 1em;
-  position: relative;
-
-  padding: 3em;
-
-  overflow: hidden;
-
-  box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.5);
-  border-radius: 1em;
 }
+
 
 .infogrid > .container > .item::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-
-  background: rgba(0, 0, 0, 0.6);
-
-  border-radius: 1em;
-
-  transition: background 0.5s;
+  background: rgba(0, 0, 0, 0.7);
 }
 
-.infogrid > .container > .item > img {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  object-fit: cover;
-  border-radius: 1em;
-}
 
-.infogrid > .container *:not(img, i) {
+
+.infogrid > .container > .item > *:not(img, i, a) {
   z-index: 2;
   width: 100%;
   text-align: center;
@@ -187,8 +101,7 @@ header > a:hover::after {
   justify-content: center;
 
   padding: 0.5em 1.3em;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 
   border-radius: 9em;
 
@@ -209,5 +122,20 @@ header > a:hover::after {
 
 .infogrid > .container > .item > span {
   font-size: clamp(1.3rem, 3vw, 1.7rem);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.infogrid > .container > .item > a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: clamp(1.3rem, 2vw, 1.4rem);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+
+  margin: 2em auto 0 auto;
+
+  z-index: 2;
 }

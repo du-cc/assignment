@@ -79,23 +79,6 @@
   cursor: pointer;
 }
 
-.intro > .text_container > .a > a::after {
-  content: "";
-  position: absolute;
-  bottom: -0.3em;
-
-  background: #fff;
-
-  width: 0;
-  height: 2px;
-
-  transition-duration: 0.3s;
-}
-
-.intro > .text_container > .a > a:hover::after {
-  width: 100%;
-}
-
 .intro > .copyright {
   position: absolute;
   bottom: 2vh;
@@ -131,44 +114,14 @@
   background: linear-gradient(to bottom, #262422, #594a3a);
 }
 
-.infogrid > h1 {
-  font-size: clamp(4rem, 5vw, 6rem);
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0;
-}
-
 .infogrid > .container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3em;
-
-  margin: 3em 0;
-}
-
-@media screen and (max-width: 800px) {
-  .infogrid > .container {
-    grid-template-columns: 1fr;
-    height: max-content;
-  }
 }
 
 .infogrid > .container > .item {
-  background-repeat: no-repeat !important;
-  background-size: 100%;
-  background-position: center !important;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   gap: 3em;
-  position: relative;
-
-  padding: 3em;
-
-  overflow: hidden;
-
-  box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.5);
-  border-radius: 1em;
 }
 
 @media screen and (min-width: 800px) {
@@ -187,18 +140,7 @@
 }
 
 .infogrid > .container > .item::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-
   background: rgba(0, 0, 0, 0.6);
-
-  border-radius: 1em;
-
-  transition: background 0.5s;
 }
 
 @media (hover: none) {
@@ -209,18 +151,6 @@
 
 .infogrid > .container > .item:hover::after {
   background: rgba(0, 0, 0, 0.8);
-}
-
-.infogrid > .container > .item > img {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  object-fit: cover;
-  border-radius: 1em;
-
-  transition: transform 1s cubic-bezier(0.44, 0, 0, 0.905) !important;
 }
 
 .infogrid > .container > .item:hover > img {
@@ -261,4 +191,10 @@
   .infogrid > .container > .item > .desc {
     opacity: 1;
   }
+}
+
+
+
+.prefoot:has(a:hover) {
+  background: rgba(107, 176, 255, 0.7);
 }
