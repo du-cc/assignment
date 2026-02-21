@@ -69,39 +69,34 @@ header > a {
   z-index: 1;
 }
 
-
-
 .infogrid > .container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 3em;
 }
 
 .infogrid > .container > .item {
-  gap: 1em;
+  flex-direction: row;
+  gap: 3em;
 }
-
 
 .infogrid > .container > .item::after {
   background: rgba(0, 0, 0, 0.7);
 }
 
-
-
-.infogrid > .container > .item > *:not(img, i, a) {
+.infogrid > .container > .item > *:not(img) {
   z-index: 2;
-  width: 100%;
-  text-align: center;
 }
 
-.infogrid > .container > .item > i {
-  z-index: 2;
+.infogrid > .container > .item > .title {
+  width: 55%;
+}
 
+.infogrid > .container > .item > .title > i {
   display: flex;
   justify-content: center;
 
   padding: 0.5em 1.3em;
-  margin: 0 auto;
 
   border-radius: 9em;
 
@@ -113,19 +108,19 @@ header > a {
   );
 }
 
-.infogrid > .container > .item > h1 {
+.infogrid > .container > .item > .title > h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 600;
 
   word-wrap: break-word;
 }
 
-.infogrid > .container > .item > span {
+.infogrid > .container > .item > .title > span {
   font-size: clamp(1.3rem, 3vw, 1.7rem);
   color: rgba(255, 255, 255, 0.7);
 }
 
-.infogrid > .container > .item > a {
+.infogrid > .container > .item > .title > a {
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: clamp(1.3rem, 2vw, 1.4rem);
@@ -135,7 +130,46 @@ header > a {
   align-items: center;
   gap: 1em;
 
-  margin: 2em auto 0 auto;
+  margin-top: 2em;
 
   z-index: 2;
+}
+
+.infogrid > .container > .item > .desc {
+  display: flex;
+  gap: 2em;
+  width: 45%;
+}
+
+@media screen and (max-width: 1025px) {
+  .infogrid > .container > .item > .desc {
+    display: none;
+  }
+}
+
+.infogrid > .container > .item > .desc > .item {
+  padding: 3em;
+  flex: 1 1 0;
+  min-width: 0;
+
+  border-radius: 1em;
+  background: rgba(255, 255, 255, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2em;
+}
+
+.infogrid > .container > .item > .desc > .item > h1 {
+  margin: 0;
+
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.infogrid > .container > .item > .desc > .item > span {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
 }
