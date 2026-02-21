@@ -153,6 +153,10 @@
   background: rgba(0, 0, 0, 0.8);
 }
 
+.infogrid > .container > .item > img {
+  transition: transform 1s cubic-bezier(0.44, 0, 0, 0.905) !important;
+}
+
 .infogrid > .container > .item:hover > img {
   transform: scale(1.1);
 }
@@ -192,8 +196,6 @@
     opacity: 1;
   }
 }
-
-
 
 .prefoot:has(a:hover) {
   background: rgba(107, 176, 255, 0.7);
