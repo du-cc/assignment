@@ -72,6 +72,52 @@ a.underlined:hover::after {
   width: 100%;
 }
 
+/* nav */
+nav {
+  display: flex;
+  justify-content: space-between;
+
+  width: 90dvw;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 1em auto;
+  padding: 1.5em 2.5em;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1em;
+
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+
+  font-size: clamp(1rem, 2vw, 1.3rem);
+
+  z-index: 5;
+}
+
+nav > ul {
+  display: flex;
+  align-items: center;
+  gap: 1.3em;
+
+  list-style-type: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+nav > ul > div {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.7em;
+}
+
+nav > ul > div > span:nth-last-child(1) {
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
 /* infogrid */
 .infogrid {
   padding: 13em 7em;
