@@ -2,52 +2,23 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-:root {
-  --accent: #1b5eb6;
-
-  --bg-theme: #000;
-  --bg: #000;
-
-  --fg: #fff;
-}
-
-* {
-  transition:
-    color 0.3s,
-    background-color 0.3s !important;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: #000;
+  color: #fff;
 
   font-family: "Inter", sans-serif;
 
   padding: 0;
   margin: 0;
 }
-
-/* components */
-/* .theme_switch {
-  position: absolute;
-  right: 2vw;
-  top: 2vh;
-
-  color: #fff !important;
-
-  font-size: 1.3em;
-  cursor: pointer;
-} */
 
 /* underlined link */
 a.underlined {
@@ -59,6 +30,7 @@ a.underlined::after {
   content: "";
   position: absolute;
   bottom: -0.3em;
+  left: 0;
 
   background: #fff;
 
@@ -76,24 +48,29 @@ a.underlined:hover::after {
 nav {
   display: flex;
   justify-content: space-between;
+  gap: 7dvw;
 
-  width: 90dvw;
+  width: max-content;
+  max-width: 85dvw;
 
   position: fixed;
   left: 0;
   right: 0;
+  top: 0;
   margin: 1em auto;
   padding: 1.5em 2.5em;
 
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 1em;
 
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 
-  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
 
-  z-index: 5;
+  z-index: 100;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 nav > ul {
@@ -113,10 +90,27 @@ nav > ul > div {
   gap: 0.7em;
 }
 
-nav > ul > div > span:nth-last-child(1) {
-  font-size: 0.8em;
-  color: rgba(255, 255, 255, 0.7);
+nav > ul a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+
+  filter: brightness(1);
+  transition: filter 0.3s;
 }
+
+nav > ul > li:not(.current) > a {
+  color: rgb(170, 170, 170);
+}
+
+nav > ul a:hover {
+  filter: brightness(0.8);
+}
+
+nav > ul > div > span:nth-child(3) {
+  font-size: 0.8em;
+  color: rgb(170, 170, 170);
+}
+
 
 /* infogrid */
 .infogrid {
@@ -124,7 +118,7 @@ nav > ul > div > span:nth-last-child(1) {
 
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1.5em;
 
   background: linear-gradient(to bottom, rgb(4, 22, 37), rgb(0, 15, 31));
 }
@@ -204,6 +198,7 @@ nav > ul > div > span:nth-last-child(1) {
 /* footer */
 .prefoot {
   padding: 5em;
+  padding-bottom: 10em;
   width: 100%;
   height: 100%;
 
