@@ -196,8 +196,7 @@ nav > ul > div > span:nth-child(3) {
 
 /* footer */
 .prefoot {
-  /* padding: 5em; */
-  padding: 5em 0;
+  padding: 5em 2em;
 
   display: flex;
   flex-direction: column;
