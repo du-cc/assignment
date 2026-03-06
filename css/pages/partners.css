@@ -1,0 +1,60 @@
+header {
+  background: url(../../assets/index/sea.webp);
+}
+
+.infogrid > .container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1em;
+}
+
+.infogrid > .container > .item {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2em;
+
+  box-shadow: none;
+
+  font-size: clamp(1.5rem, 2vw, 2.5rem);
+}
+
+@media screen and (max-width: 700px) {
+  .infogrid > .container > .item {
+    flex-direction: column;
+  }
+}
+
+.infogrid > .container > .item > .logo {
+  border-radius: 50%;
+  box-shadow: 0 0 10px 1px var(--item-color);
+  background: color-mix(in srgb, var(--item-color) 10%, transparent 90%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1.3em;
+}
+
+.infogrid > .container > .item > .logo > img {
+  height: 70px;
+  aspect-ratio: 1/1;
+}
+
+@media screen and (max-width: 700px) {
+  .infogrid > .container > .item > .desc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.infogrid > .container > .item > .desc > span {
+  font-weight: 600;
+  font-size: 1.3em;
+}
+
+.infogrid > .container > .item > .desc > p {
+  font-size: 1em;
+}
