@@ -50,8 +50,7 @@ nav {
   justify-content: space-between;
   gap: 7dvw;
 
-  width: max-content;
-  max-width: 85dvw;
+  width: 80dvw;
 
   position: fixed;
   left: 0;
@@ -65,9 +64,8 @@ nav {
 
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
 
-  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
 
   z-index: 100;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -84,6 +82,13 @@ nav > ul {
   padding: 0;
 }
 
+@media screen and (max-width: 800px) {
+  nav {
+    gap: 1em;
+    flex-direction: column;
+  }
+}
+
 nav > ul > div {
   display: flex;
   align-items: flex-end;
@@ -98,15 +103,25 @@ nav > ul a {
   transition: filter 0.3s;
 }
 
+nav > ul > li.button {
+  padding: 0.5em 1em;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 0.3em;
+}
+
 nav > ul > li:not(.current) > a {
   color: rgb(170, 170, 170);
+}
+
+nav > ul > li.button > a {
+  color: rgb(255, 255, 255);
 }
 
 nav > ul a:hover {
   filter: brightness(0.8);
 }
 
-nav > ul > div > span:nth-child(3) {
+nav > ul > div > span:nth-child(n + 2) {
   font-size: 0.8em;
   color: rgb(170, 170, 170);
 }
