@@ -13,6 +13,15 @@ header {
   gap: 5em;
 }
 
+.infogrid > .container > .item > .title,
+.infogrid > .container > .item > .desc {
+  min-width: 0;
+}
+
+.infogrid > .container > .item > .title {
+  flex: 1 1 0;
+}
+
 .infogrid > .container > .item::after {
   background: rgba(0, 0, 0, 0.7);
 }
@@ -70,15 +79,26 @@ header {
   width: 45%;
 }
 
-@media screen and (max-width: 1025px) {
+@media screen and (max-width: 1900px) {
+  .infogrid > .container > .item {
+    flex-direction: column;
+  }
+
   .infogrid > .container > .item > .desc {
-    display: none;
+    width: 100%;
+    justify-content: stretch;
   }
 }
 
+@media screen and (max-width: 800px) {
+    .infogrid > .container > .item > .desc {
+      flex-direction: column;
+    }
+}
+
 .infogrid > .container > .item > .desc > .item {
-  padding: 3em;
   flex: 1 1 0;
+  padding: 3em;
   min-width: 0;
 
   border-radius: 1em;
@@ -93,6 +113,7 @@ header {
 
 .infogrid > .container > .item > .desc > .item > h1 {
   margin: 0;
+  overflow-wrap: anywhere;
 
   text-align: center;
   color: color-mix(in srgb, var(--item-color) 70%, rgba(255, 255, 255) 30%);
@@ -100,6 +121,7 @@ header {
 }
 
 .infogrid > .container > .item > .desc > .item > span {
+  overflow-wrap: anywhere;
   text-align: center;
   color: rgba(255, 255, 255, 0.7);
   font-size: clamp(1.3rem, 3vw, 1.7rem);
