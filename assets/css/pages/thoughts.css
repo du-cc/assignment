@@ -1,0 +1,35 @@
+header {
+  background: url(../../media/melting.webp);
+  margin-bottom: 5em;
+}
+
+article {
+  position: relative;
+  padding: 10em;
+  font-size: clamp(2rem, 2vw, 3rem);
+}
+
+@media screen and (max-width: 1000px) {
+  article {
+    padding: 3em;
+  }
+}
+
+.quote {
+  position: absolute;
+  font-size: 10em;
+  color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.quote-left {
+  top: 0;
+  left: 0;
+  transform: translate(-20%, -20%);
+}
+
+.quote-right {
+  right: 0;
+  bottom: 0;
+  transform: translate(20%, 20%);
+}
