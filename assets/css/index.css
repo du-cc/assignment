@@ -4,6 +4,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 87.5%;
 }
 
 @view-transition {
@@ -48,16 +49,16 @@ a.underlined:hover::after {
 nav {
   display: flex;
   justify-content: space-between;
-  gap: 7dvw;
+  gap: 5dvw;
 
-  width: 80dvw;
+  width: 76dvw;
 
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
-  margin: 1em auto;
-  padding: 1.5em 2.5em;
+  margin: 0.8em auto;
+  padding: 1.2em 2em;
 
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 1em;
@@ -65,7 +66,7 @@ nav {
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(16px);
 
-  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  font-size: clamp(0.9rem, 1vw, 1.05rem);
 
   z-index: 100;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -74,7 +75,7 @@ nav {
 nav > ul {
   display: flex;
   align-items: center;
-  gap: 1.3em;
+  gap: 1.1em;
 
   list-style-type: none;
 
@@ -92,7 +93,7 @@ nav > ul {
 nav > ul > div {
   display: flex;
   align-items: flex-end;
-  gap: 0.7em;
+  gap: 0.5em;
 }
 
 nav > ul a {
@@ -104,7 +105,7 @@ nav > ul a {
 }
 
 nav > ul > li.button {
-  padding: 0.5em 1em;
+  padding: 0.45em 0.9em;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 0.3em;
 }
@@ -128,7 +129,7 @@ nav > ul > div > span:nth-child(n + 2) {
 
 /* infogrid */
 .infogrid {
-  padding: 13em 7em;
+  padding: 10em 5.5em;
 
   display: flex;
   flex-direction: column;
@@ -139,26 +140,26 @@ nav > ul > div > span:nth-child(n + 2) {
 
 @media screen and (max-width: 800px) {
   .infogrid {
-    padding: 5em 2em;
+    padding: 4em 1.5em;
   }
 }
 
 .infogrid > h1 {
-  font-size: clamp(4rem, 5vw, 6rem);
+  font-size: clamp(3.4rem, 4.3vw, 5.2rem);
   color: rgba(255, 255, 255, 0.7);
   margin: 0;
 }
 
 .infogrid > span {
-  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.45rem);
   color: rgba(255, 255, 255, 0.6);
 }
 
 .infogrid > .container {
   display: grid;
-  gap: 3em;
+  gap: 2.5em;
 
-  margin: 3em 0;
+  margin: 2.5em 0;
 }
 
 @media screen and (max-width: 800px) {
@@ -178,7 +179,7 @@ nav > ul > div > span:nth-child(n + 2) {
   justify-content: space-between;
   position: relative;
 
-  padding: 3em;
+  padding: 2.5em;
 
   overflow: hidden;
 
@@ -211,7 +212,7 @@ nav > ul > div > span:nth-child(n + 2) {
 
 /* footer */
 .prefoot {
-  padding: 5em 2em;
+  padding: 4em 1.5em;
 
   display: flex;
   flex-direction: column;
@@ -223,17 +224,17 @@ nav > ul > div > span:nth-child(n + 2) {
 }
 
 .prefoot > h1 {
-  font-size: clamp(3rem, 4vw, 4rem);
+  font-size: clamp(2.5rem, 3.3vw, 3.4rem);
   text-decoration: underline solid;
 }
 
 .prefoot > a {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.6);
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: clamp(1.2rem, 2.4vw, 2rem);
 
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 0.8em;
   position: relative;
 }

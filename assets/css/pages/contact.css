@@ -8,7 +8,7 @@ body {
   min-height: 100dvh;
 
   box-sizing: border-box;
-  padding: 1em;
+  padding: 0.75em;
 
   display: flex;
   justify-content: center;
@@ -36,18 +36,18 @@ body > div {
   color: white;
 
   display: flex;
-  gap: 5em;
+  gap: 4em;
 
-  padding: 5em;
-  margin-top: 10vw;
+  padding: 4em;
+  margin-top: 8vw;
 }
 
 @media screen and (max-width: 800px) {
   body > div {
     flex-direction: column;
-    gap: 3em;
-    padding: 2em;
-    margin-top: 30vw;
+    gap: 2.5em;
+    padding: 1.5em;
+    margin-top: 24vw;
   }
 }
 
@@ -62,7 +62,7 @@ header {
   align-items: center;
   justify-content: center;
 
-  font-size: clamp(1.5rem, 1.5vw, 2rem);
+  font-size: clamp(1.25rem, 1.3vw, 1.7rem);
 }
 
 header > h1 {
@@ -81,13 +81,13 @@ header > div > div > i {
 form {
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1.5em;
 }
 
 form div.grouped {
   display: flex;
   flex-direction: row;
-  gap: 1.5em;
+  gap: 1.2em;
 }
 
 form label:not(:has(input[type="radio"])),
@@ -103,11 +103,11 @@ form select {
   background: none;
   border: 2px solid rgba(130, 130, 130, 0.3);
   border-radius: 0.3em;
-  padding: 0.5em 1em;
+  padding: 0.45em 0.85em;
 
   color: white;
 
-  font-size: clamp(0.7rem, 2vw, 1rem);
+  font-size: clamp(0.65rem, 1.7vw, 0.9rem);
 
   transition: border 0.2s;
 }
@@ -182,10 +182,10 @@ form textarea:focus {
 /* success */
 .success {
   flex-direction: column;
-  gap: 2em;
-  padding: 5em;
+  gap: 1.5em;
+  padding: 4em;
   align-items: center;
-  font-size: clamp(1.3rem, 2vw, 2rem);
+  font-size: clamp(1.1rem, 1.7vw, 1.7rem);
   text-align: center;
 
   background: rgba(0, 0, 0, 0.3);

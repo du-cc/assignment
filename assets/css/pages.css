@@ -3,16 +3,16 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3em;
+  gap: 2.2em;
 
   background-position: center !important;
   background-size: cover !important;
 
   position: relative;
 
-  padding: 1em;
+  padding: 0.75em;
 
-  height: 95dvh;
+  height: 88dvh;
 }
 
 header::before {
@@ -34,8 +34,9 @@ header::before {
 }
 
 header > h1 {
-  font-size: clamp(5rem, 6vw, 7rem);
+  font-size: clamp(4rem, 5vw, 5.8rem);
   color: rgba(255, 255, 255, 0.9);
+  text-align: center;
 
   margin: 0;
 
@@ -43,11 +44,11 @@ header > h1 {
 }
 
 header > span {
-  font-size: clamp(2rem, 2.5vw, 2.5rem);
+  font-size: clamp(1.5rem, 2vw, 2.1rem);
   color: rgba(255, 255, 255, 0.8);
   text-align: center;
 
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
 
   z-index: 1;
 }

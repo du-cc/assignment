@@ -1,24 +1,24 @@
 header {
   background: url(../../media/melting.webp);
-  margin-bottom: 5em;
+  margin-bottom: 4em;
 }
 
 article {
   position: relative;
   overflow: hidden;
-  padding: 10em;
-  font-size: clamp(2rem, 2vw, 3rem);
+  padding: 8em;
+  font-size: clamp(1.6rem, 1.7vw, 2.4rem);
 }
 
 @media screen and (max-width: 1000px) {
   article {
-    padding: 3em;
+    padding: 2.25em;
   }
 }
 
 .quote {
   position: absolute;
-  font-size: clamp(10rem, 20vw, 30rem);
+  font-size: clamp(8rem, 16vw, 24rem);
   color: rgba(255, 255, 255, 0.1);
   pointer-events: none;
 }
