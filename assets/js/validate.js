@@ -92,5 +92,7 @@ document.querySelector("form").addEventListener("submit", (e) => {
     }
   }
 
-  e.target.submit()
+  // submits
+  // e.target.submit()
+  window.location.href = "./contact/success.html"
 });
