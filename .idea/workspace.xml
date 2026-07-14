@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="80836094-20aa-4139-aeeb-8543bef973c2" name="Changes" comment="init" />
+    <list default="true" id="80836094-20aa-4139-aeeb-8543bef973c2" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/src/ConsoleColors.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GameUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SudokuBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SudokuGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SudokuGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SudokuValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DIT.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DIT.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -22,63 +42,68 @@
     &quot;accountId&quot;: &quot;e53ae5e1-ab1a-4dd4-85b3-b0f4bc2e37a1&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-26.0.1/lib/src.zip!/java.base/java/lang/Math.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-26.0.1/lib/src.zip!/java.base/java/lang/String.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-26.0.1/lib/src.zip!/java.base/java/lang/System.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0000000205848563" />
-      <entry key="S10" value="1.000144970728202" />
-      <entry key="S30" value="1.0638082717497896" />
-      <entry key="S60" value="1.3358445422055198" />
-      <entry key="M2" value="1.8055064616051537" />
-      <entry key="M5" value="2.3841513224158524" />
-      <entry key="M10" value="2.6626240678722404" />
-      <entry key="M15" value="2.7679492684733664" />
-      <entry key="M30" value="2.8802478401031775" />
-      <entry key="H1" value="2.9391609018880116" />
-      <entry key="H2" value="2.9693356626936955" />
-      <entry key="H4" value="2.984606122451015" />
-      <entry key="D1" value="2.9974257392601595" />
-      <entry key="W1" value="2.999632036925233" />
+      <entry key="S2" value="1.0001075358575648" />
+      <entry key="S5" value="1.0507931054484911" />
+      <entry key="S10" value="1.435110048726781" />
+      <entry key="S30" value="3.0442197013225507" />
+      <entry key="S60" value="4.742093853304106" />
+      <entry key="M2" value="8.135167265730775" />
+      <entry key="M5" value="16.92723132376588" />
+      <entry key="M10" value="28.580182160824172" />
+      <entry key="M15" value="41.19581273989342" />
+      <entry key="M30" value="82.16478696724676" />
+      <entry key="H1" value="150.17239116352116" />
+      <entry key="H2" value="227.15911818130428" />
+      <entry key="H4" value="290.2974743988458" />
+      <entry key="D1" value="364.8024075331041" />
+      <entry key="W1" value="380.3209324713176" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="6.720344596618657E-76" />
-      <entry key="S2" value="1.6100815954562353E-19" />
-      <entry key="S5" value="3.039059159302336E-8" />
-      <entry key="S10" value="1.7432897519638945E-4" />
-      <entry key="S30" value="0.05586286333859587" />
-      <entry key="S60" value="0.23635325963183978" />
-      <entry key="M2" value="0.48616176282369206" />
-      <entry key="M5" value="0.7493976368188646" />
-      <entry key="M10" value="0.8656775593827443" />
-      <entry key="M15" value="0.9083169942592559" />
-      <entry key="M30" value="0.9530566584727562" />
-      <entry key="H1" value="0.9762462079172222" />
-      <entry key="H2" value="0.9880517233005679" />
-      <entry key="H4" value="0.9940079090734479" />
-      <entry key="D1" value="0.9989988155960619" />
-      <entry key="W1" value="0.9998569122489127" />
+      <entry key="MS500" value="1.0289205879050668E-217" />
+      <entry key="S2" value="9.36983309639535E-55" />
+      <entry key="S5" value="4.132717960676588E-22" />
+      <entry key="S10" value="3.385575886010526E-11" />
+      <entry key="S30" value="6.657845548620038E-4" />
+      <entry key="S60" value="0.04480840520983214" />
+      <entry key="M2" value="0.39995479226885655" />
+      <entry key="M5" value="2.268962284588324" />
+      <entry key="M10" value="6.408100753629995" />
+      <entry key="M15" value="11.903458218912366" />
+      <entry key="M30" value="31.18900659544215" />
+      <entry key="H1" value="62.69941983639652" />
+      <entry key="H2" value="96.34515043560525" />
+      <entry key="H4" value="122.51016250413781" />
+      <entry key="D1" value="151.99846116180592" />
+      <entry key="W1" value="157.97383163521275" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.0019667100587045278" />
-      <entry key="MS500" value="0.2875729733376513" />
-      <entry key="S2" value="0.7322965986599769" />
-      <entry key="S5" value="0.8828254170833105" />
-      <entry key="S10" value="0.9398847167880771" />
-      <entry key="S30" value="1.0965758923194289" />
-      <entry key="S60" value="1.5563816808732496" />
-      <entry key="M2" value="2.2807701112356593" />
-      <entry key="M5" value="3.127912909740054" />
-      <entry key="M10" value="3.5251993273608617" />
-      <entry key="M15" value="3.674128356110481" />
-      <entry key="M30" value="3.8321989165448844" />
-      <entry key="H1" value="3.9148448144756314" />
-      <entry key="H2" value="3.957103817567532" />
-      <entry key="H4" value="3.9784716364525" />
-      <entry key="D1" value="3.9964007370177734" />
-      <entry key="W1" value="3.9994855445298185" />
+      <entry key="MS100" value="0.0017480958416561966" />
+      <entry key="MS500" value="0.28087497575791126" />
+      <entry key="S2" value="0.7280832995935471" />
+      <entry key="S5" value="0.9282287432649303" />
+      <entry key="S10" value="1.3608442713936286" />
+      <entry key="S30" value="3.0041385510227867" />
+      <entry key="S60" value="4.754333228370227" />
+      <entry key="M2" value="8.50478110241216" />
+      <entry key="M5" value="19.169022609959654" />
+      <entry key="M10" value="34.96231117405386" />
+      <entry key="M15" value="53.07120833464397" />
+      <entry key="M30" value="113.32078260302136" />
+      <entry key="H1" value="212.8395282785889" />
+      <entry key="H2" value="323.47945688302366" />
+      <entry key="H4" value="412.7917617896879" />
+      <entry key="D1" value="516.7975535594663" />
+      <entry key="W1" value="538.2942708170675" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -90,28 +115,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/home/ducc/Assignments/JavaProgramming/DIT/src/Main.java&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.ChangelistConflict&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.SudokuGame.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "master",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "onboarding.tips.debug.path": "/home/ducc/Assignments/JavaProgramming/DIT/src/Main.java",
+    "settings.editor.selected.configurable": "project.propVCSSupport.ChangelistConflict",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RunManager">
+    <configuration name="SudokuGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SudokuGame" />
+      <module name="DIT" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SudokuGame" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -128,6 +173,8 @@
       <option name="presentableId" value="Default" />
       <updated>1783397008350</updated>
       <workItem from="1783397009590" duration="139000" />
+      <workItem from="1783560264055" duration="4180000" />
+      <workItem from="1783920106516" duration="11193000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -137,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783397317333</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="test">
+      <option name="closed" value="true" />
+      <created>1783399562972</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1783399562972</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +200,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>
