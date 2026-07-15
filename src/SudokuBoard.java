@@ -42,7 +42,7 @@ public class SudokuBoard {
     }
 
     public void resetBoard() {
-        this.board = GameUtils.cloneBoard(this.originalBoard);
+        this.board = GameUtils.copyBoard(this.originalBoard);
     }
 
     public SudokuBoard loadBoard(int[][] newBoard) {
@@ -50,8 +50,8 @@ public class SudokuBoard {
             throw new IndexOutOfBoundsException("row/col must be between 0 and 8");
         }
 
-        this.board = GameUtils.cloneBoard(newBoard);
-        this.originalBoard = GameUtils.cloneBoard(newBoard);
+        this.board = GameUtils.copyBoard(newBoard);
+        this.originalBoard = GameUtils.copyBoard(newBoard);
         return this;
     }
 

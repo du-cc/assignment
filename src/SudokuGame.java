@@ -4,10 +4,6 @@ public class SudokuGame {
         SudokuGenerator sudokuGenerator = new SudokuGenerator(GameUtils.generateNewSeed());
         sudoku.loadBoard(sudokuGenerator.generatePuzzle(SudokuGenerator.Difficulty.HARD));
         sudoku.displayBoard();
-        SudokuBoard lol = new SudokuBoard();
-        SudokuGenerator loll = new SudokuGenerator(GameUtils.generateNewSeed());
-        lol.loadBoard(loll.generatePuzzle(SudokuGenerator.Difficulty.HARD));
-        lol.displayBoard();
     }
 
 
