@@ -1,3 +1,5 @@
+package main;
+
 public class SudokuBoard {
 
     private int[][] board;

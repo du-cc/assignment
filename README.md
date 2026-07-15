@@ -1,31 +1,31 @@
 # DIT Assignments
 
 ## Checklist
-### SudokuGame
+### main.SudokuGame
 - [ ] main
 - [ ] startGame
 - [ ] selectMode
 
-### SudokuBoard
+### main.SudokuBoard
 - [x] displayBoard
 - [x] setValue
 - [x] resetBoard
 - [x] loadBoard
 - [x] isCellEditable
 
-### SudokuValidator
+### main.SudokuValidator
 - [ ] isValidMove
 - [ ] checkRow
 - [ ] checkColumn
 - [ ] checkSubGrid
 
-### GameUtils
+### main.GameUtils
 - [ ] isBoardComplete
 - [ ] isValidInput
 - [x] copyBoard
 - [x] generateEmptyBoard
 
-### ~~SudokuGenerator~~
+### ~~main.SudokuGenerator~~
 - [x] generateCompleteBoard
 - [x] generatePuzzle
 - [x] removeCells

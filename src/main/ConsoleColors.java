@@ -1,3 +1,4 @@
+package main;
 
 public enum ConsoleColors {
     RESET("\033[0m"),
