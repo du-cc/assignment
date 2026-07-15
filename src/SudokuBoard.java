@@ -38,6 +38,9 @@ public class SudokuBoard {
         if (row < 0 || row >= 9 || col < 0 || col >= 9) {
             throw new IndexOutOfBoundsException("row/col must be between 0 and 8");
         }
+        if (!isCellEditable(row, col)) {
+            throw new IllegalArgumentException("cell is not editable");
+        }
         this.board[row][col] = value;
     }
 
@@ -45,16 +48,18 @@ public class SudokuBoard {
         this.board = GameUtils.copyBoard(this.originalBoard);
     }
 
-    public SudokuBoard loadBoard(int[][] newBoard) {
+    public void loadBoard(int[][] newBoard) {
         if (newBoard.length != 9 || newBoard[0].length != 9) {
             throw new IndexOutOfBoundsException("row/col must be between 0 and 8");
         }
 
         this.board = GameUtils.copyBoard(newBoard);
         this.originalBoard = GameUtils.copyBoard(newBoard);
-        return this;
     }
 
+    public boolean isCellEditable(int row, int col) {
+        return originalBoard[row][col] == 0;
+    }
 
 
 }

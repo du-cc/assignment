@@ -43,12 +43,11 @@ public class SudokuGenerator {
     /**
      * Returns a randomly generated sudoku board. Generated using randomized backtracking algorithm.
      */
-    public int[][] generateCompleteBoard() {
+    public void generateCompleteBoard() {
         // i hate u mr bug
         reset();
         board = new int[9][9];
         fillBoard();
-        return board;
     }
 
     public void removeCells(int count) {

@@ -8,10 +8,10 @@
 
 ### SudokuBoard
 - [x] displayBoard
-- [ ] setValue
-- [ ] resetBoard
+- [x] setValue
+- [x] resetBoard
 - [x] loadBoard
-- [ ] isCellEditable
+- [x] isCellEditable
 
 ### SudokuValidator
 - [ ] isValidMove
