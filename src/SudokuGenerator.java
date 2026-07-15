@@ -38,6 +38,7 @@ public class SudokuGenerator {
 
     // TODO: not implemented
     public int[][] generatePuzzle(Difficulty diff) {
+        int[][] board = generateCompleteBoard();
         return new int[9][9];
     }
 
@@ -59,93 +60,151 @@ public class SudokuGenerator {
 
     // TODO: not implemented
     public int[][] removeCells(int[][] board, int count) {
+        
+
         return new int[9][9];
     }
 
     // Helpers
     /**
-     * Uses the argument instance given to fill up a Sudoku board. Fills uses randomized backtracking algorithm.
-     * @param board     Integer array for Sudoku board (Integer)
-     * @param rowUsed   Bits representing used numbers in a row. {@code 1} if used, {@code 0} if not used.
-     * @param colUsed   Bits representing used numbers in a column. {@code 1} if used, {@code 0} if not used.
-     * @param boxUsed   Bits representing used numbers in a box. {@code 1} if used, {@code 0} if not used.
-     * @return Boolean (Recursively) depending on whether the cell can be filled.
+     * Finds the empty cell with the fewest possible candidates.
+     * @param board    Integer array for Sudoku board
+     * @param rowUsed  Bits representing used numbers in a row
+     * @param colUsed  Bits representing used numbers in a column
+     * @param boxUsed  Bits representing used numbers in a box
+     * @return {r, c} of the best empty cell, or {@code null} if the board is complete.
      */
-    private boolean fillBoard(int[][] board, int[] rowUsed, int[] colUsed, int[] boxUsed) {
-        // find best cell (least candidate)
-        int bestR = -1, bestC = -1, bestCount = 10;
-
+    private int[] findBestCell(int[][] board, int[] rowUsed, int[] colUsed, int[] boxUsed) {
+        int bestR = -1, bestC = -1, bestN = 10;
         for (int r = 0; r < 9; r++) {
             for (int c = 0; c < 9; c++) {
                 if (board[r][c] == 0) {
-                    // digits used (unavailable)
                     int used = rowUsed[r] | colUsed[c] | boxUsed[(r / 3) * 3 + (c / 3)];
-                    // how much candidate available
-                    int mask = 0x1FF & ~used; // NOT, flip
-                    int count = Integer.bitCount(mask);
-
-                    if (count < bestCount) {
+                    int available = 0x1FF & ~used;
+                    int n_available = Integer.bitCount(available);
+                    if (n_available < bestN) {
                         bestR = r;
                         bestC = c;
-                        bestCount = count;
+                        bestN = n_available;
                     }
                 }
             }
         }
+        if (bestR == -1) return null;
+        return new int[]{bestR, bestC};
+    }
 
+    /**
+     * Computes the bitmask of possible candidates for a given cell.
+     */
+    private int availableMask(int r, int c, int[] rowUsed, int[] colUsed, int[] boxUsed) {
+        int used = rowUsed[r] | colUsed[c] | boxUsed[(r / 3) * 3 + (c / 3)];
+        return 0x1FF & ~used;
+    }
 
-        // completed
-        if (bestR == -1) {
-            return true;
-        }
-
-        // get candidates
-        int used = rowUsed[bestR] | colUsed[bestC] | boxUsed[(bestR / 3) * 3 + (bestC / 3)];
-        int available = 0x1FF & ~used;
-        // no available candidate
-        if (available == 0) {
-            return false;
-        }
-
-        // shuffle candidate
+    /**
+     * Turns candidate bitmask into a shuffled list of digits 1-9.
+     */
+    private List<Integer> extractShuffledDigits(int mask) {
         List<Integer> candidates = new ArrayList<>();
         for (int d = 0; d < 9; d++) {
-            // bit shift
-            // 1 << d shift the 1 bit to d pos
-            // AND with mask to determine if bit available then add that candidate
-            if ((available & (1 << d)) != 0) {
+            // bit shift: 1 << d shifts the 1 bit to d pos
+            // AND with mask to determine if bit available, then add that candidate
+            if ((mask & (1 << d)) != 0) {
                 candidates.add(d + 1);
             }
         }
-        // finally shuffle the list
         Collections.shuffle(candidates, this.random);
+        return candidates;
+    }
 
-        // try inserting each candidate
-        for (int digit : candidates) {
-            // bitshift
-            int bit = 1 << (digit - 1);
+    /**
+     * Places a digit on the board and marks it used in all three tracking masks.
+     */
+    private void place(int[][] board, int[] rowUsed, int[] colUsed, int[] boxUsed, int r, int c, int digit) {
+        int bit = 1 << (digit - 1);
+        // inject bit
+        // Eg: 1011001(ORI) + 0000100(MASK) = 1011101(MOD)
+        board[r][c] = digit;
+        rowUsed[r] |= bit;
+        colUsed[c] |= bit;
+        boxUsed[(r / 3) * 3 + (c / 3)] |= bit;
+    }
 
-            // inject bit
-            // Eg: 1011001(ORI) + 0000100(MASK) = 1011101(MOD)
-            board[bestR][bestC] = digit;
-            rowUsed[bestR] |= bit;
-            colUsed[bestC] |= bit;
-            boxUsed[(bestR / 3) * 3 + (bestC / 3)] |= bit;
+    /**
+     * Removes a digit from the board and clears it from all three tracking masks (backtrack).
+     */
+    private void unplace(int[][] board, int[] rowUsed, int[] colUsed, int[] boxUsed, int r, int c, int digit) {
+        int bit = 1 << (digit - 1);
+        // AND with NOT to revert bit
+        // 1011101(MOD) + 1111011(NOTMASK) = 1011001(ORI)
+        board[r][c] = 0;
+        rowUsed[r] &= ~bit;
+        colUsed[c] &= ~bit;
+        boxUsed[(r / 3) * 3 + (c / 3)] &= ~bit;
+    }
 
-            // try next recursion with injected
-            if (fillBoard(board, rowUsed, colUsed, boxUsed)) {
-                return true; // success!
-            }
-
-            // backtrack
-            // AND with NOT to revert bit
-            // 1011101(MOD) + 1111011(NOTMASK) = 1011001(ORI)
-            board[bestR][bestC] = 0;
-            rowUsed[bestR] &= ~bit;
-            colUsed[bestC] &= ~bit;
-            boxUsed[(bestR / 3) * 3 + (bestC / 3)] &= ~bit;
+    /**
+     * Fills the board using randomized backtracking. Stops as soon as one complete solution is found.
+     * @param board    Integer array for Sudoku board
+     * @param rowUsed  Bits representing used numbers in a row
+     * @param colUsed  Bits representing used numbers in a column
+     * @param boxUsed  Bits representing used numbers in a box
+     * @return {@code true} when the board has been filled.
+     */
+    private boolean fillBoard(int[][] board, int[] rowUsed, int[] colUsed, int[] boxUsed) {
+        int[] cell = findBestCell(board, rowUsed, colUsed, boxUsed);
+        if (cell == null) {
+            return true; // board complete
+        }
+        int r = cell[0], c = cell[1];
+        int mask = availableMask(r, c, rowUsed, colUsed, boxUsed);
+        if (mask == 0) {
+            return false; // dead end
         }
 
+        for (int digit : extractShuffledDigits(mask)) {
+            place(board, rowUsed, colUsed, boxUsed, r, c, digit);
+            // try next recursion with placed
+            if (fillBoard(board, rowUsed, colUsed, boxUsed)) {
+                return true;
+            }
+            // NOOO FAILED
+            unplace(board, rowUsed, colUsed, boxUsed, r, c, digit);
+        }
         return false;
+    }
+
+    /**
+     * Counts how many solutions the board has, stopping early once {@code limit} is reached.
+     * @param board    Integer array for Sudoku board
+     * @param rowUsed  Bits representing used numbers in a row
+     * @param colUsed  Bits representing used numbers in a column
+     * @param boxUsed  Bits representing used numbers in a box
+     * @param limit    Stop searching once this many solutions have been found.
+     * @return Number of solutions found (capped at {@code limit}).
+     */
+    private int countSolutions(int[][] board, int[] rowUsed, int[] colUsed, int[] boxUsed, int limit) {
+        int[] cell = findBestCell(board, rowUsed, colUsed, boxUsed);
+        if (cell == null) {
+            return 1; // 1 solution
+        }
+        int r = cell[0], c = cell[1];
+        int available = availableMask(r, c, rowUsed, colUsed, boxUsed);
+        if (available == 0) {
+            return 0; // no solution
+        }
+
+        int total = 0;
+        for (int digit : extractShuffledDigits(available)) {
+            place(board, rowUsed, colUsed, boxUsed, r, c, digit);
+            // same with fill, test with placed
+            total += countSolutions(board, rowUsed, colUsed, boxUsed, limit);
+            unplace(board, rowUsed, colUsed, boxUsed, r, c, digit);
+            if (total >= limit) {
+                return total; // limit hit
+            }
+        }
+        return total;
     }
 }

@@ -42,7 +42,7 @@ public class SudokuBoard {
     }
 
     public void resetBoard() {
-        this.board = clone(this.originalBoard);
+        this.board = GameUtils.cloneBoard(this.originalBoard);
     }
 
     public SudokuBoard loadBoard(int[][] newBoard) {
@@ -50,17 +50,11 @@ public class SudokuBoard {
             throw new IndexOutOfBoundsException("row/col must be between 0 and 8");
         }
 
-        this.board = clone(newBoard);
-        this.originalBoard = clone(newBoard);
+        this.board = GameUtils.cloneBoard(newBoard);
+        this.originalBoard = GameUtils.cloneBoard(newBoard);
         return this;
     }
 
 
-    private int[][] clone(int[][] source) {
-        int[][] clone = new int[9][9];
-        for (int i = 0; i < 9; i++) {
-            System.arraycopy(source[i], 0, clone[i], 0, 9);
-        }
-        return clone;
-    }
+
 }
