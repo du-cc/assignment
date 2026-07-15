@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 public class SudokuGenerator {
-    private Random random;
+    private final Random random;
 
     public SudokuGenerator() {
         this.random = new Random();
@@ -39,7 +39,8 @@ public class SudokuGenerator {
     // TODO: not implemented
     public int[][] generatePuzzle(Difficulty diff) {
         int[][] board = generateCompleteBoard();
-        return new int[9][9];
+        removeCells(board, this.random.nextInt(diff.min, diff.max));
+        return board;
     }
 
     /**
@@ -48,33 +49,46 @@ public class SudokuGenerator {
     public int[][] generateCompleteBoard() {
         int[][] board = new int[9][9];
 
-        // Tracks what numbers used
-        int[] rowUsed = new int[9];
-        int[] colUsed = new int[9];
-        int[] boxUsed = new int[9];
-
-        fillBoard(board, rowUsed, colUsed, boxUsed);
+        fillBoard(board);
 
         return board;
     }
 
-    // TODO: not implemented
-    public int[][] removeCells(int[][] board, int count) {
-        
+    public void removeCells(int[][] board, int count) {
+        for (int i = 0; i < count; i++) {
+            int randomR = this.random.nextInt(0,8);
+            int randomC = this.random.nextInt(0,8);
 
-        return new int[9][9];
+            if (board[randomR][randomC] == 0) {
+                i--;
+                continue;
+            }
+
+            int val = board[randomR][randomC];
+            unplace(board, randomR, randomC, val);
+
+            int nSolutions = countSolutions(board, 2);
+            if (nSolutions != 1) {
+                place(board, randomR, randomC, val);
+                i--;
+            }
+
+        }
+
     }
 
     // Helpers
+    private final int[] rowUsed = new int[9];
+    private final int[] colUsed = new int[9];
+    private final int[] boxUsed = new int[9];
+
+
     /**
      * Finds the empty cell with the fewest possible candidates.
      * @param board    Integer array for Sudoku board
-     * @param rowUsed  Bits representing used numbers in a row
-     * @param colUsed  Bits representing used numbers in a column
-     * @param boxUsed  Bits representing used numbers in a box
      * @return {r, c} of the best empty cell, or {@code null} if the board is complete.
      */
-    private int[] findBestCell(int[][] board, int[] rowUsed, int[] colUsed, int[] boxUsed) {
+    private int[] findBestCell(int[][] board) {
         int bestR = -1, bestC = -1, bestN = 10;
         for (int r = 0; r < 9; r++) {
             for (int c = 0; c < 9; c++) {
@@ -97,7 +111,7 @@ public class SudokuGenerator {
     /**
      * Computes the bitmask of possible candidates for a given cell.
      */
-    private int availableMask(int r, int c, int[] rowUsed, int[] colUsed, int[] boxUsed) {
+    private int availableMask(int r, int c) {
         int used = rowUsed[r] | colUsed[c] | boxUsed[(r / 3) * 3 + (c / 3)];
         return 0x1FF & ~used;
     }
@@ -121,7 +135,7 @@ public class SudokuGenerator {
     /**
      * Places a digit on the board and marks it used in all three tracking masks.
      */
-    private void place(int[][] board, int[] rowUsed, int[] colUsed, int[] boxUsed, int r, int c, int digit) {
+    private void place(int[][] board, int r, int c, int digit) {
         int bit = 1 << (digit - 1);
         // inject bit
         // Eg: 1011001(ORI) + 0000100(MASK) = 1011101(MOD)
@@ -134,7 +148,7 @@ public class SudokuGenerator {
     /**
      * Removes a digit from the board and clears it from all three tracking masks (backtrack).
      */
-    private void unplace(int[][] board, int[] rowUsed, int[] colUsed, int[] boxUsed, int r, int c, int digit) {
+    private void unplace(int[][] board, int r, int c, int digit) {
         int bit = 1 << (digit - 1);
         // AND with NOT to revert bit
         // 1011101(MOD) + 1111011(NOTMASK) = 1011001(ORI)
@@ -147,30 +161,27 @@ public class SudokuGenerator {
     /**
      * Fills the board using randomized backtracking. Stops as soon as one complete solution is found.
      * @param board    Integer array for Sudoku board
-     * @param rowUsed  Bits representing used numbers in a row
-     * @param colUsed  Bits representing used numbers in a column
-     * @param boxUsed  Bits representing used numbers in a box
      * @return {@code true} when the board has been filled.
      */
-    private boolean fillBoard(int[][] board, int[] rowUsed, int[] colUsed, int[] boxUsed) {
-        int[] cell = findBestCell(board, rowUsed, colUsed, boxUsed);
+    private boolean fillBoard(int[][] board) {
+        int[] cell = findBestCell(board);
         if (cell == null) {
             return true; // board complete
         }
         int r = cell[0], c = cell[1];
-        int mask = availableMask(r, c, rowUsed, colUsed, boxUsed);
+        int mask = availableMask(r, c);
         if (mask == 0) {
             return false; // dead end
         }
 
         for (int digit : extractShuffledDigits(mask)) {
-            place(board, rowUsed, colUsed, boxUsed, r, c, digit);
+            place(board, r, c, digit);
             // try next recursion with placed
-            if (fillBoard(board, rowUsed, colUsed, boxUsed)) {
+            if (fillBoard(board)) {
                 return true;
             }
             // NOOO FAILED
-            unplace(board, rowUsed, colUsed, boxUsed, r, c, digit);
+            unplace(board, r, c, digit);
         }
         return false;
     }
@@ -178,29 +189,26 @@ public class SudokuGenerator {
     /**
      * Counts how many solutions the board has, stopping early once {@code limit} is reached.
      * @param board    Integer array for Sudoku board
-     * @param rowUsed  Bits representing used numbers in a row
-     * @param colUsed  Bits representing used numbers in a column
-     * @param boxUsed  Bits representing used numbers in a box
-     * @param limit    Stop searching once this many solutions have been found.
+     * @param limit    As name suggests.
      * @return Number of solutions found (capped at {@code limit}).
      */
-    private int countSolutions(int[][] board, int[] rowUsed, int[] colUsed, int[] boxUsed, int limit) {
-        int[] cell = findBestCell(board, rowUsed, colUsed, boxUsed);
+    private int countSolutions(int[][] board, int limit) {
+        int[] cell = findBestCell(board);
         if (cell == null) {
             return 1; // 1 solution
         }
         int r = cell[0], c = cell[1];
-        int available = availableMask(r, c, rowUsed, colUsed, boxUsed);
+        int available = availableMask(r, c);
         if (available == 0) {
             return 0; // no solution
         }
 
         int total = 0;
         for (int digit : extractShuffledDigits(available)) {
-            place(board, rowUsed, colUsed, boxUsed, r, c, digit);
+            place(board, r, c, digit);
             // same with fill, test with placed
-            total += countSolutions(board, rowUsed, colUsed, boxUsed, limit);
-            unplace(board, rowUsed, colUsed, boxUsed, r, c, digit);
+            total += countSolutions(board, limit);
+            unplace(board, r, c, digit);
             if (total >= limit) {
                 return total; // limit hit
             }
