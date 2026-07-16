@@ -34,6 +34,11 @@ public class SudokuGenerator {
         public int getMax() {
             return max;
         }
+
+        @Override
+        public String toString() {
+            return this.name();
+        }
     }
 
     public int[][] generatePuzzle(Difficulty diff) {
