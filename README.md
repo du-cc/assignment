@@ -3,8 +3,12 @@
 ## Checklist
 ### main.SudokuGame
 - [ ] main
+  - [ ] UI
 - [ ] startGame
 - [ ] selectMode
+  - [x] start game (random)
+  - [ ] load game (seed)
+
 
 ### main.SudokuBoard
 - [x] displayBoard
