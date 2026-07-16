@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80836094-20aa-4139-aeeb-8543bef973c2" name="Changes" comment="minor additions/changes">
-      <change afterPath="$PROJECT_DIR$/.idea/codeInsightSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/github_stefanbirkner_system_lambda.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/SudokuGeneratorTest.java" afterDir="false" />
+    <list default="true" id="80836094-20aa-4139-aeeb-8543bef973c2" name="Changes" comment="- better file structure&#10;- added tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DIT.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DIT.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ConsoleColors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ConsoleColors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SudokuBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SudokuBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SudokuGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SudokuGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SudokuGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SudokuGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SudokuValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SudokuValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GameUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GameUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/SudokuGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SudokuGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/SudokuValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SudokuValidator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,61 +46,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.4294149269540087E-8" />
-      <entry key="MS500" value="0.026979361205450365" />
-      <entry key="S2" value="0.4052829602676544" />
-      <entry key="S5" value="0.702938855203653" />
-      <entry key="S10" value="0.9905874034781281" />
-      <entry key="S30" value="2.3496024088999117" />
-      <entry key="S60" value="4.118482266519702" />
-      <entry key="M2" value="7.379016524481264" />
-      <entry key="M5" value="14.15536291469141" />
-      <entry key="M10" value="26.92675497114496" />
-      <entry key="M15" value="40.355777923430566" />
-      <entry key="M30" value="75.00129218711454" />
-      <entry key="H1" value="132.04698644132336" />
-      <entry key="H2" value="232.67154072952067" />
-      <entry key="H4" value="384.0817852387189" />
-      <entry key="D1" value="709.8306694180612" />
-      <entry key="W1" value="805.3686245423976" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="1.1279195707576734E-255" />
+      <entry key="S2" value="1.8326078100135923E-64" />
+      <entry key="S5" value="3.2005735601723625E-26" />
+      <entry key="S10" value="1.7890146897586844E-13" />
+      <entry key="S30" value="5.6347490610581655E-5" />
+      <entry key="S60" value="0.007544163629956758" />
+      <entry key="M2" value="0.10655990056475842" />
+      <entry key="M5" value="1.706020896653117" />
+      <entry key="M10" value="6.866762374044554" />
+      <entry key="M15" value="12.154436009747714" />
+      <entry key="M30" value="27.903738495623443" />
+      <entry key="H1" value="55.75580590250972" />
+      <entry key="H2" value="88.17106315532895" />
+      <entry key="H4" value="123.47638685648516" />
+      <entry key="D1" value="531.509258837373" />
+      <entry key="W1" value="897.1064368996161" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000542510397181" />
-      <entry key="S2" value="1.0903033781186724" />
-      <entry key="S5" value="1.5146790114412259" />
-      <entry key="S10" value="2.1745991117889716" />
-      <entry key="S30" value="3.5995302086025327" />
-      <entry key="S60" value="5.030377788535196" />
-      <entry key="M2" value="7.687659139485277" />
-      <entry key="M5" value="12.497929331377096" />
-      <entry key="M10" value="18.525677745052498" />
-      <entry key="M15" value="23.76184159483433" />
-      <entry key="M30" value="37.86945190970156" />
-      <entry key="H1" value="66.81465076928833" />
-      <entry key="H2" value="119.38865256635793" />
-      <entry key="H4" value="192.712489937721" />
-      <entry key="D1" value="339.6685749228114" />
-      <entry key="W1" value="381.3545011361698" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0000000000001905" />
+      <entry key="S30" value="1.0000575492223929" />
+      <entry key="S60" value="1.0077138094635318" />
+      <entry key="M2" value="1.1136584648608066" />
+      <entry key="M5" value="2.4227412602194764" />
+      <entry key="M10" value="6.13465269231081" />
+      <entry key="M15" value="10.411719383360655" />
+      <entry key="M30" value="24.69765852711793" />
+      <entry key="H1" value="47.4893476355809" />
+      <entry key="H2" value="70.47356263972208" />
+      <entry key="H4" value="91.84445754515212" />
+      <entry key="D1" value="288.246809511824" />
+      <entry key="W1" value="458.36717142540886" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.795109409813753E-8" />
-      <entry key="MS500" value="0.04395657468407567" />
-      <entry key="S2" value="0.7863891378129293" />
-      <entry key="S5" value="1.644453168217802" />
-      <entry key="S10" value="2.6639539747977823" />
-      <entry key="S30" value="5.630515990656403" />
-      <entry key="S60" value="8.929338230730744" />
-      <entry key="M2" value="14.909305045545956" />
-      <entry key="M5" value="26.55421611444084" />
-      <entry key="M10" value="45.375665590328175" />
-      <entry key="M15" value="64.04998030127828" />
-      <entry key="M30" value="112.81683407665344" />
-      <entry key="H1" value="198.81851216089677" />
-      <entry key="H2" value="352.0257220078034" />
-      <entry key="H4" value="576.7681436584667" />
-      <entry key="D1" value="1049.4918497451988" />
-      <entry key="W1" value="1186.7219441680447" />
+      <entry key="MS100" value="9.5367431640625E-7" />
+      <entry key="MS500" value="0.0625" />
+      <entry key="S2" value="0.5" />
+      <entry key="S5" value="0.7578582832551991" />
+      <entry key="S10" value="0.8705505632964762" />
+      <entry key="S30" value="0.9549536705865599" />
+      <entry key="S60" value="0.9922946472535926" />
+      <entry key="M2" value="1.2077646418466397" />
+      <entry key="M5" value="4.1165137945073464" />
+      <entry key="M10" value="12.982884663737133" />
+      <entry key="M15" value="22.54404191626023" />
+      <entry key="M30" value="52.57385075304439" />
+      <entry key="H1" value="103.2178919571189" />
+      <entry key="H2" value="158.6240443848319" />
+      <entry key="H4" value="215.30735507389622" />
+      <entry key="D1" value="819.7494597211154" />
+      <entry key="W1" value="1355.4721354505728" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -147,12 +140,13 @@
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "project.propVCSSupport.ChangelistConflict",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.SudokuGeneratorTest">
+  <component name="RunManager" selected="Application.SudokuGame">
     <configuration name="SudokuGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.SudokuGame" />
       <module name="DIT" />
@@ -177,8 +171,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SudokuGeneratorTest" />
         <item itemvalue="Application.SudokuGame" />
+        <item itemvalue="JUnit.SudokuGeneratorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -200,7 +194,7 @@
       <workItem from="1783397009590" duration="139000" />
       <workItem from="1783560264055" duration="4180000" />
       <workItem from="1783920106516" duration="17818000" />
-      <workItem from="1784091019523" duration="13345000" />
+      <workItem from="1784091019523" duration="23423000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -282,7 +276,15 @@
       <option name="project" value="LOCAL" />
       <updated>1784103623122</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="- better file structure&#10;- added tests">
+      <option name="closed" value="true" />
+      <created>1784105646011</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1784105646011</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,6 +300,7 @@
     <MESSAGE value="better cleanup + bug fixes" />
     <MESSAGE value="keyword fix + checklist" />
     <MESSAGE value="minor additions/changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor additions/changes" />
+    <MESSAGE value="- better file structure&#10;- added tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="- better file structure&#10;- added tests" />
   </component>
 </project>

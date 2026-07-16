@@ -14,18 +14,18 @@
 - [x] isCellEditable
 
 ### main.SudokuValidator
-- [ ] isValidMove
-- [ ] checkRow
-- [ ] checkColumn
-- [ ] checkSubGrid
+- [x] isValidMove
+- [x] checkRow
+- [x] checkColumn
+- [x] checkSubGrid
 
 ### main.GameUtils
-- [ ] isBoardComplete
-- [ ] isValidInput
+- [x] isBoardComplete
+- [x] isValidInput
 - [x] copyBoard
 - [x] generateEmptyBoard
 
-### ~~main.SudokuGenerator~~
+### main.SudokuGenerator
 - [x] generateCompleteBoard
 - [x] generatePuzzle
 - [x] removeCells
