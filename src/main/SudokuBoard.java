@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Arrays;
+
 public class SudokuBoard {
 
     private int[][] board;
@@ -10,12 +12,15 @@ public class SudokuBoard {
         this.originalBoard = new int[9][9];
     }
 
-    public void displayBoard() {
+    public String toString(boolean colored, boolean raw) {
+        StringBuilder output = new StringBuilder();
+        String border = "+-------+-------+-------+";
+
         // row
         for (int row = 0; row < 9; row++) {
             // border
-            if (row % 3 == 0) {
-                System.out.println(ConsoleColors.colorize("+-------+-------+-------+", ConsoleColors.WHITE));
+            if (row % 3 == 0 && !raw) {
+                output.append(colored ? ConsoleColors.colorize(border, ConsoleColors.WHITE) : border).append("\n");
             }
 
             StringBuilder line = new StringBuilder();
@@ -24,16 +29,35 @@ public class SudokuBoard {
 
                 // border
                 if (col % 3 == 0) {
-                    line.append(ConsoleColors.colorize("| ", ConsoleColors.WHITE));
+                    line.append(colored ? ConsoleColors.colorize("| ", ConsoleColors.WHITE) : "| ");
                 }
 
                 int val = this.board[row][col];
                 line.append(val == 0 ? ". " : val + " ");
             }
-            line.append(ConsoleColors.colorize("|", ConsoleColors.WHITE));
-            System.out.println(line);
+            line.append(colored ? ConsoleColors.colorize("|", ConsoleColors.WHITE) : "|").append("\n");
+            output.append(line);
         }
-        System.out.println(ConsoleColors.colorize("+-------+-------+-------+", ConsoleColors.WHITE));
+
+        if (!raw) output.append(colored ? ConsoleColors.colorize(border, ConsoleColors.WHITE) : border);
+
+        return output.toString();
+    }
+
+    public String toString(boolean colored) {
+        if (colored) return toString(true, false);
+        return toString(false, false);
+    }
+
+    @Override
+    public String toString() {
+        return toString(false, true);
+    }
+
+
+
+    public void displayBoard() {
+        System.out.println(toString(true));
     }
 
     public void setValue(int row, int col, int value) {
