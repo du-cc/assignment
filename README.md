@@ -37,10 +37,10 @@
 ## Screenshots
 <details>
 <summary>Click to expand</summary>
-### Main menu
-![mainmenu.png](assets/readme/mainmenu.png)
-### Difficulty selection
-![difficulty.png](assets/readme/difficulty.png)
-### gameplay
-![game.png](assets/readme/game.png)
+<h3>Main menu</h3>
+<img src="assets/readme/mainmenu.png" alt="main menu">
+<h3>Difficulty selection</h3>
+<img src="assets/readme/difficulty.png" alt="difficulty">
+<h3>gameplay</h3>
+<img src="assets/readme/game.png" alt="gameplay">
 </details>
