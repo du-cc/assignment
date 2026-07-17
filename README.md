@@ -8,7 +8,7 @@
 - [ ] selectMode
   - [x] start game (random)
   - [ ] load game (seed)
-
+- [ ] Export input data (numbers user inputted)
 
 ### main.SudokuBoard
 - [x] displayBoard
@@ -33,3 +33,14 @@
 - [x] generateCompleteBoard
 - [x] generatePuzzle
 - [x] removeCells
+
+## Screenshots
+<details>
+<summary>Click to expand</summary>
+### Main menu
+![mainmenu.png](assets/readme/mainmenu.png)
+### Difficulty selection
+![difficulty.png](assets/readme/difficulty.png)
+### gameplay
+![game.png](assets/readme/game.png)
+</details>
