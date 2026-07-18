@@ -79,12 +79,12 @@ public enum ConsoleColors {
         this.code = code;
     }
 
-    public String getCode() {
+    public String get(String code) {
         return code;
     }
 
-    public static String colorize(String input, ConsoleColors color) {
-        return color.code + input + RESET.code;
+    public static String colorize(String string, ConsoleColors color) {
+        return color.code + string + RESET.code;
     }
 
     @Override

@@ -43,4 +43,6 @@
 <img src="assets/readme/difficulty.png" alt="difficulty">
 <h3>gameplay</h3>
 <img src="assets/readme/game.png" alt="gameplay">
+<h3>commands</h3>
+<img src="assets/readme/commands.png" alt="commands">
 </details>

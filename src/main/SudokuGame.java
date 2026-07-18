@@ -1,10 +1,11 @@
 package main;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class SudokuGame {
     static void main(String[] args) {
         selectMode();
+
     }
 
     public static void selectMode() {
@@ -52,7 +53,7 @@ public class SudokuGame {
 
             // menu item
             System.out.println(header);
-            System.out.println(ConsoleColors.CYAN_UNDERLINED + "Select Difficulty" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.colorize("Select Difficulty", ConsoleColors.CYAN_UNDERLINED));
 
             System.out.println(ConsoleColors.colorize("1.", ConsoleColors.BLUE_BOLD) + " " + ConsoleColors.colorize("Easy", ConsoleColors.GREEN_BOLD_BRIGHT));
             System.out.println(ConsoleColors.colorize("2.", ConsoleColors.BLUE_BOLD) + " " + ConsoleColors.colorize("Medium", ConsoleColors.YELLOW_BOLD_BRIGHT));
@@ -81,47 +82,95 @@ public class SudokuGame {
     }
 
     public static void startGame(SudokuGenerator.Difficulty difficulty) {
-        long seed = GameUtils.generateNewSeed();
-        SudokuBoard sudoku = new SudokuBoard();
-        SudokuGenerator generator = new SudokuGenerator(seed);
+            long seed = GameUtils.generateNewSeed();
+            SudokuBoard sudoku = new SudokuBoard();
+            SudokuGenerator generator = new SudokuGenerator(seed);
 
-        sudoku.loadBoard(generator.generatePuzzle(difficulty));
-        clearConsole();
+            sudoku.loadBoard(generator.generatePuzzle(difficulty));
+            while (true) {
+            clearConsole();
 
-        // board display
+            // board display
 
-        // determine text color
-        ConsoleColors diffColor = ConsoleColors.BLUE_BOLD_BRIGHT;
-        if (difficulty.toString().equals("EASY")) diffColor = ConsoleColors.GREEN_BOLD_BRIGHT;
-        if (difficulty.toString().equals("MEDIUM")) diffColor = ConsoleColors.YELLOW_BOLD_BRIGHT;
-        if (difficulty.toString().equals("HARD")) diffColor = ConsoleColors.RED_BOLD_BRIGHT;
+            // determine text color
+            ConsoleColors diffColor = ConsoleColors.BLUE_BOLD_BRIGHT;
+            if (difficulty.toString().equals("EASY")) diffColor = ConsoleColors.GREEN_BOLD_BRIGHT;
+            if (difficulty.toString().equals("MEDIUM")) diffColor = ConsoleColors.YELLOW_BOLD_BRIGHT;
+            if (difficulty.toString().equals("HARD")) diffColor = ConsoleColors.RED_BOLD_BRIGHT;
 
 
 //        System.out.println(ConsoleColors.colorize("Difficulty: ", ConsoleColors.WHITE) + ConsoleColors.colorize(String.valueOf(difficulty), diffColor));
 //        System.out.println(ConsoleColors.colorize("Seed: ", ConsoleColors.WHITE) + seed + "\n");
 
-        String left = header + "\n" +
-                ConsoleColors.colorize(" Difficulty: ", ConsoleColors.WHITE) + ConsoleColors.colorize(String.valueOf(difficulty), diffColor) + "\n" +
-                ConsoleColors.colorize(" Seed: ", ConsoleColors.WHITE) + seed + "\n\n" +
-                ConsoleColors.colorize(" Moves: ", ConsoleColors.WHITE) + "67" + "\n\n\n\n" +
-                " /cmds " + ConsoleColors.colorize("for list of commands.", ConsoleColors.WHITE);
-        ;
-
-        printSideBySide(left, sudoku.toString(true));
+            String left = header + "\n" +
+                    ConsoleColors.colorize(" Difficulty: ", ConsoleColors.WHITE) + ConsoleColors.colorize(String.valueOf(difficulty), diffColor) + "\n" +
+                    ConsoleColors.colorize(" Seed: ", ConsoleColors.WHITE) + seed + "\n\n" +
+                    ConsoleColors.colorize(" Moves: ", ConsoleColors.WHITE) + "67" + "\n\n\n\n" +
+                    " cmds " + ConsoleColors.colorize("for list of commands.", ConsoleColors.WHITE);
 
 
+            printSideBySide(left, sudoku.toString(true));
 
-        boolean inputIsValid = true;
-        Scanner inputScanner = inputInit(inputIsValid, "> ");
-        System.out.println(inputScanner.nextLine());
+
+            boolean inputIsValid = true;
+            Scanner inputScanner = inputInit(inputIsValid, "> ");
+            String input = inputScanner.nextLine();
+
+            // Commands
+            // input <row> <col> <value>
+            // reset
+            // check
+            // solve
+            //
+            if (input.equals("cmds")) {
+                showCommands();
+                System.out.println("\n\n" + ConsoleColors.colorize("press ENTER to continue", ConsoleColors.BLACK_BRIGHT));
+                Scanner continueScanner = new Scanner(System.in);
+                continueScanner.nextLine();
+            }
+
+            if (input.equals("return")) {
+                selectMode();
+            }
+
+            if (input.equals("exit")) {
+                // TODO: EXPORT
+
+            }
+        }
     }
+
+    public static void showCommands() {
+        // construct command list
+        clearConsole();
+        System.out.println(ConsoleColors.CYAN_UNDERLINED + "Commands\n" + ConsoleColors.RESET);
+
+        System.out.println("╭ input " + ConsoleColors.colorize("<row> <column> <value>", ConsoleColors.YELLOW));
+        System.out.println(ConsoleColors.colorize("├ Inputs value into the board.", ConsoleColors.WHITE));
+        System.out.println(ConsoleColors.colorize("┆", ConsoleColors.BLACK_BRIGHT));
+        System.out.println("├ check");
+        System.out.println(ConsoleColors.colorize("├ Checks if the board is completed.", ConsoleColors.WHITE));
+        System.out.println(ConsoleColors.colorize("┆", ConsoleColors.BLACK_BRIGHT));
+        System.out.println("├ export");
+        System.out.println(ConsoleColors.colorize("├ Exports data of this board into a string.", ConsoleColors.WHITE));
+        System.out.println(ConsoleColors.colorize("┆", ConsoleColors.BLACK_BRIGHT));
+        System.out.println("├ return");
+        System.out.println(ConsoleColors.colorize("├ Returns to main menu.", ConsoleColors.WHITE));
+        System.out.println(ConsoleColors.colorize("┆", ConsoleColors.BLACK_BRIGHT));
+        System.out.println("├ exit");
+        System.out.println(ConsoleColors.colorize("├ Quits this game.", ConsoleColors.WHITE));
+        System.out.println(ConsoleColors.colorize("┆", ConsoleColors.BLACK_BRIGHT));
+        System.out.println("├ cmds");
+        System.out.println(ConsoleColors.colorize("╰ Shows this list of commands.", ConsoleColors.WHITE));
+    }
+
 
     // Helper
     private static final String header = (ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "_" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.RESET + "\n" +
-    ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.RESET + "\n" +
-    ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "_" + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + "|" + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + "." + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + "." + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "'" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "|" + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.RESET + "\n" +
-    ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "_" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "_" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "|" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "_" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "," + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "|" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "_" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.RESET + "\n" +
-    ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RESET
+            ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.RESET + "\n" +
+            ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "_" + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + "|" + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + "." + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + "." + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "'" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "|" + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.RESET + "\n" +
+            ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "_" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "_" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "|" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "_" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "," + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "|" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "_" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.RESET + "\n" +
+            ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RESET
     );
 
     private static void clearConsole() {
@@ -130,10 +179,18 @@ public class SudokuGame {
     }
 
     private static Scanner inputInit(boolean valid) {
-        return inputInit(valid, "Select an option: ");
+        return inputInit(valid, "Select an option: ", null, null);
     }
 
     private static Scanner inputInit(boolean valid, String prompt) {
+        return inputInit(valid, prompt, null, null);
+    }
+
+    private static Scanner inputInit(boolean valid, String prompt, String message) {
+        return inputInit(valid, "Select an option: ", prompt, ConsoleColors.RED);
+    }
+
+    private static Scanner inputInit(boolean valid, String prompt, String message, ConsoleColors color) {
         // top border
         System.out.println(ConsoleColors.colorize("─".repeat(80), valid ? ConsoleColors.BLACK_BRIGHT : ConsoleColors.RED));
 
@@ -177,4 +234,6 @@ public class SudokuGame {
     private static String stripAnsi(String input) {
         return input.replaceAll("\u001B\\[[;\\d]*m", "");
     }
+
 }
+

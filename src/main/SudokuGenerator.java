@@ -51,9 +51,9 @@ public class SudokuGenerator {
      * Returns a randomly generated sudoku board. Generated using randomized backtracking algorithm.
      */
     public void generateCompleteBoard() {
-        // i hate u mr bug
+        // I hate u mr bug
         reset();
-        board = new int[9][9];
+        board = GameUtils.generateEmptyBoard();
         fillBoard();
     }
 
@@ -136,7 +136,7 @@ public class SudokuGenerator {
         List<Integer> candidates = new ArrayList<>();
         for (int d = 0; d < 9; d++) {
             // bit shift: 1 << d shifts the 1 bit to d pos
-            // AND with mask to determine if bit available, then add that candidate
+            // AND with mask to determine if a bit available, then add that candidate
             if ((mask & (1 << d)) != 0) {
                 candidates.add(d + 1);
             }
@@ -166,7 +166,7 @@ public class SudokuGenerator {
     private void unplace(int r, int c, int digit) {
         int bit = 1 << (digit - 1);
         // AND with NOT to revert bit
-        // 1011101(MOD) + 1111011(NOTMASK) = 1011001(ORI)
+        // 1011101(MOD) + 1111011(NOT MASK) = 1011001(ORI)
         board[r][c] = 0;
         rowUsed[r] &= ~bit;
         colUsed[c] &= ~bit;
