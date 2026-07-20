@@ -10,6 +10,14 @@ public class SudokuBoard {
         this.originalBoard = new int[9][9];
     }
 
+    public int[][] getBoard() {
+        return this.board;
+    }
+
+    public int[][] getOriginalBoard() {
+        return this.originalBoard;
+    }
+
     @Override
     public String toString() {
         return toString(true, false, null);
@@ -60,9 +68,6 @@ public class SudokuBoard {
 
         return output.toString();
     }
-
-
-
 
 
 

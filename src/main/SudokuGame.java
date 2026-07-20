@@ -84,9 +84,12 @@ public class SudokuGame {
         long seed = GameUtils.generateNewSeed();
         SudokuBoard sudoku = new SudokuBoard();
         SudokuGenerator generator = new SudokuGenerator(seed);
-        int[][] board = generator.generatePuzzle(difficulty);
+        sudoku.loadBoard(generator.generatePuzzle(difficulty));
 
-        sudoku.loadBoard(board);
+        // DEBUG
+//        sudoku.loadBoard(generator.generatePuzzle(SudokuGenerator.Difficulty.EMPTY));
+
+        int[][] board = sudoku.getBoard();
 
         // environment variables
         int[] highlightPos = new int[2];
