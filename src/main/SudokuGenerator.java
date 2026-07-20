@@ -17,7 +17,11 @@ public class SudokuGenerator {
     public enum Difficulty {
         EASY(40, 45),
         MEDIUM(28, 35),
-        HARD(20, 25);
+        HARD(20, 25),
+
+        // DEBUGGING PURPOSES ONLY
+        FILLED(81, 81),
+        EMPTY(0, 1);
 
         private final int min;
         private final int max;
@@ -43,6 +47,13 @@ public class SudokuGenerator {
 
     public int[][] generatePuzzle(Difficulty diff) {
         generateCompleteBoard();
+
+        // DEBUG
+        if (diff.equals(Difficulty.FILLED) || diff.equals(Difficulty.EMPTY)) {
+            removeCells(diff.getMax());
+            return board;
+        }
+
         removeCells(this.random.nextInt(diff.getMin(), diff.getMax()));
         return board;
     }

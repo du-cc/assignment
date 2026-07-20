@@ -79,10 +79,6 @@ public enum ConsoleColors {
         this.code = code;
     }
 
-    public String get(String code) {
-        return code;
-    }
-
     public static String colorize(String string, ConsoleColors color) {
         return color.code + string + RESET.code;
     }

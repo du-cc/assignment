@@ -10,10 +10,23 @@ public class SudokuBoard {
         this.originalBoard = new int[9][9];
     }
 
-    public String toString(boolean colored, boolean raw) {
+    @Override
+    public String toString() {
+        return toString(true, false, null);
+    }
+
+    public String toString(boolean raw) {
+        return toString(raw, false, null);
+    }
+
+    public String toString(boolean raw, boolean colored) {
+        return toString(raw, colored, null);
+    }
+
+    public String toString(boolean raw, boolean colored, int[] pos) {
         StringBuilder output = new StringBuilder();
 //        String header = "   1 2 3   4 5 6   7 8 9  ";
-        String border = " +-------+-------+-------+";
+        String border = "+-------+-------+-------+";
 //        output.append(colored ? ConsoleColors.colorize(header, ConsoleColors.WHITE) : header).append("\n");
         // row
         for (int row = 0; row < 9; row++) {
@@ -35,7 +48,9 @@ public class SudokuBoard {
                 }
 
                 int val = this.board[row][col];
+                if (pos != null) if (pos[0] == row && pos[1] == col) line.append(ConsoleColors.BLUE_BACKGROUND);
                 line.append(val == 0 ? ". " : val + " ");
+                line.append(ConsoleColors.RESET);
             }
             line.append(colored ? ConsoleColors.colorize("|", ConsoleColors.WHITE) : "|").append("\n");
             output.append(line);
@@ -46,20 +61,13 @@ public class SudokuBoard {
         return output.toString();
     }
 
-    public String toString(boolean colored) {
-        if (colored) return toString(true, false);
-        return toString(false, false);
-    }
 
-    @Override
-    public String toString() {
-        return toString(false, true);
-    }
+
 
 
 
     public void displayBoard() {
-        System.out.println(toString(true));
+        System.out.println(toString(false, true));
     }
 
     public void setValue(int row, int col, int value) {

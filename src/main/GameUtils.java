@@ -12,9 +12,9 @@ public class GameUtils {
     }
 
     public static int[][] copyBoard(int[][] source) {
-        int[][] clone = new int[9][9];
-        for (int i = 0; i < 9; i++) {
-            System.arraycopy(source[i], 0, clone[i], 0, 9);
+        int[][] clone = new int[source.length][];
+        for (int i = 0; i < source.length; i++) {
+            clone[i] = source[i].clone();
         }
         return clone;
     }
