@@ -5,6 +5,7 @@ import java.util.*;
 public class SudokuGenerator {
     private final Random random;
     private int[][] board;
+    private long seed;
 
     public SudokuGenerator() {
         this.random = new Random();
@@ -12,6 +13,11 @@ public class SudokuGenerator {
 
     public SudokuGenerator(long seed) {
         this.random = new Random(seed);
+        this.seed = seed;
+    }
+
+    public long getSeed() {
+        return seed;
     }
 
     public enum Difficulty {

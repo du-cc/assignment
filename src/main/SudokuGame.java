@@ -33,6 +33,11 @@ public class SudokuGame {
                     break;
                 }
 
+                // 2. load game
+                if (input == 2) {
+                    loadGame();
+                }
+
                 // 3. quit
                 if (input == 3) {
                     System.out.println("Thanks for playing!");
@@ -80,14 +85,62 @@ public class SudokuGame {
         }
     }
 
-    public static void startGame(SudokuGenerator.Difficulty difficulty) {
-        long seed = GameUtils.generateNewSeed();
-        SudokuBoard sudoku = new SudokuBoard();
-        SudokuGenerator generator = new SudokuGenerator(seed);
-        sudoku.loadBoard(generator.generatePuzzle(difficulty));
+    public static void loadGame() {
+        String message = null;
+        ConsoleColors messageColor = null;
 
-        // DEBUG
+        while (true) {
+            clearConsole();
+            System.out.println(header);
+            System.out.println(ConsoleColors.colorize("Load game", ConsoleColors.YELLOW) + "\n");
+            boolean inputIsValid = true;
+            Scanner inputScanner;
+            if (message != null && messageColor == null) messageColor = ConsoleColors.RED;
+            inputScanner = inputInit(inputIsValid, "Enter your save string (m to return): ", message, messageColor);
+            message = null;
+            messageColor = null;
+            String input = inputScanner.nextLine();
+
+            // quit
+            if (input.equals("m")) {
+                selectMode();
+            }
+
+            GameData gameData = new GameData();
+            boolean success = gameData.importData(input);
+            if (!success) {
+                message = "Invalid save string!";
+                continue;
+            }
+
+            startGame(gameData.getDifficulty(), gameData);
+        }
+    }
+
+    public static void startGame(SudokuGenerator.Difficulty difficulty) {
+        startGame(difficulty, null);
+    }
+
+    public static void startGame(SudokuGenerator.Difficulty difficulty, GameData gameData) {
+        SudokuBoard sudoku = null;
+        SudokuGenerator generator = null;
+        long seed;
+
+        // load board based on new/save
+        if (gameData == null) {
+            sudoku = new SudokuBoard();
+            seed = GameUtils.generateNewSeed();
+            generator = new SudokuGenerator(seed);
+            sudoku.loadBoard(generator.generatePuzzle(difficulty));
+
+            // DEBUG
 //        sudoku.loadBoard(generator.generatePuzzle(SudokuGenerator.Difficulty.EMPTY));
+
+        } else {
+            sudoku = gameData.loadBoard();
+            seed = gameData.getSeed();
+            difficulty = gameData.getDifficulty();
+        }
 
         int[][] board = sudoku.getBoard();
 
@@ -130,12 +183,12 @@ public class SudokuGame {
             }
 
 
-
             boolean inputIsValid = true;
             Scanner inputScanner;
             if (message != null && messageColor == null) messageColor = ConsoleColors.RED;
             inputScanner = inputInit(inputIsValid, "> ", message, messageColor);
-            message = null; messageColor = null;
+            message = null;
+            messageColor = null;
             String input = inputScanner.nextLine();
 
             // Commands
@@ -178,6 +231,13 @@ public class SudokuGame {
                     message = "Board isn't completed yet. :(";
                     messageColor = ConsoleColors.YELLOW;
                 }
+            }
+
+            if (input.equals("export") || input.equals("e")) {
+                gameData = new GameData();
+                String dataString = gameData.exportData(sudoku, generator, difficulty);
+                message = "Your save string (copy and save them in a notepad)\n" + dataString;
+                messageColor = ConsoleColors.GREEN;
             }
 
             if (input.contains("input") || input.contains("i")) {
@@ -280,7 +340,6 @@ public class SudokuGame {
                 "\n├ cmds" +
                 ConsoleColors.colorize("\n╰ Shows this list of commands.", ConsoleColors.WHITE);
     }
-
 
 
     // Helper
