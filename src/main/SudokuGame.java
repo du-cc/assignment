@@ -5,32 +5,63 @@ import java.util.Scanner;
 
 public class SudokuGame {
 //  TODO: TURN IT OFF IN PROD
-    private static final boolean DEBUG = true;
-    private static final int INPUT_BORDER_WIDTH = 80;
+    private final static boolean DEBUG = true;
+    private final static int INPUT_BORDER_WIDTH = 80;
 
-    private static final String HEADER = (ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "_" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.RESET + "\n" +
+    private final static String HEADER = (ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "_" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.RESET + "\n" +
             ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.RESET + "\n" +
             ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "_" + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + "|" + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + "." + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + "." + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "'" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "|" + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.RESET + "\n" +
             ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "_" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "_" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "|" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "_" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "," + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "|" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "_" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.RESET + "\n" +
             ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RESET
     );
 
+    private final Scanner scanner = new Scanner(System.in);
+    private SudokuBoard sudoku;
+    private SudokuGenerator generator;
+    private long seed;
+    private SudokuGenerator.Difficulty difficulty;
+    private final int[] highlightPos = {-1, -1};
+    private int moves = 0;
+    private boolean isRandomMode = false;
+
+    public SudokuBoard getSudoku() {
+        return sudoku;
+    }
+
+    public SudokuGenerator getGenerator() {
+        return generator;
+    }
+
+    public long getSeed() {
+        return seed;
+    }
+
+    public SudokuGenerator.Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public boolean isRandomMode() {
+        return isRandomMode;
+    }
+
     //  main runner
     public static void main(String[] args) {
-        selectMode();
+        new SudokuGame().selectMode();
     }
 
     //  start/load/exit
-    public static void selectMode() {
+    public void selectMode() {
         boolean inputIsValid = true;
 
         while (true) {
             clearConsole();
 
             System.out.println(HEADER);
-            System.out.println(ConsoleColors.colorize("1.", ConsoleColors.BLUE_BOLD) + " Start Game");
-            System.out.println(ConsoleColors.colorize("2.", ConsoleColors.BLUE_BOLD) + " Load Game");
-            System.out.println(ConsoleColors.colorize("3.", ConsoleColors.BLUE_BOLD) + " " + ConsoleColors.colorize("Exit", ConsoleColors.WHITE));
+            if (sudoku != null) System.out.println(ConsoleColors.colorize("0.", ConsoleColors.CYAN_BOLD) + " Continue game");
+            System.out.println(ConsoleColors.colorize("1.", ConsoleColors.BLUE_BOLD) + " Start Game (Random)");
+            System.out.println(ConsoleColors.colorize("2.", ConsoleColors.BLUE_BOLD) + " Start Game (Predefined)");
+            System.out.println(ConsoleColors.colorize("3.", ConsoleColors.BLUE_BOLD) + " Load Game");
+            System.out.println(ConsoleColors.colorize("4.", ConsoleColors.BLUE_BOLD) + " " + ConsoleColors.colorize("Exit", ConsoleColors.WHITE));
 
             Scanner inputScanner = prompt(inputIsValid);
             String line = inputScanner.nextLine();
@@ -40,15 +71,24 @@ public class SudokuGame {
                 System.out.println(ConsoleColors.colorize("─".repeat(INPUT_BORDER_WIDTH), inputIsValid ? ConsoleColors.BLACK_BRIGHT : ConsoleColors.RED));
 
                 switch (input) {
-                    case 1 -> {
+                    case 0 -> {
+                        if (sudoku != null) {
+                            gameLoop();
+                        } else {
+                            inputIsValid = false;
+                        }
+                    }
+                    case 1, 2 -> {
+                        this.isRandomMode = input == 1;
+                        System.out.println(isRandomMode);
                         selectDifficulty();
                         return;
                     }
-                    case 2 -> {
+                    case 3 -> {
                         loadGame();
                         return;
                     }
-                    case 3 -> {
+                    case 4 -> {
                         System.out.println("Thanks for playing!");
                         System.exit(0);
                         return;
@@ -62,7 +102,7 @@ public class SudokuGame {
     }
 
     //  1. start game
-    public static void selectDifficulty() {
+    public void selectDifficulty() {
         boolean inputIsValid = true;
 
         while (true) {
@@ -103,14 +143,14 @@ public class SudokuGame {
                     startGame(SudokuGenerator.Difficulty.values()[input - 2]);
                     return;
                 }
-            } catch (NumberFormatException _) {
+            } catch (NumberFormatException e) {
             }
             inputIsValid = false;
         }
     }
 
     // 2. load game
-    public static void loadGame() {
+    public void loadGame() {
         String message = null;
 
         while (true) {
@@ -142,38 +182,34 @@ public class SudokuGame {
     }
 
 
-    // game loop
-    // env
-    private static SudokuBoard sudoku;
-    private static SudokuGenerator generator;
-    private static long seed;
-    private static SudokuGenerator.Difficulty difficulty;
-    private static final int[] highlightPos = {-1, -1};
-    private static int moves = 0;
-
     // new game
-    public static void startGame(SudokuGenerator.Difficulty difficulty) {
-        seed = GameUtils.generateNewSeed();
-        generator = new SudokuGenerator(seed);
-        sudoku = new SudokuBoard();
-        sudoku.loadBoard(generator.generatePuzzle(difficulty));
-        SudokuGame.difficulty = difficulty;
+    public void startGame(SudokuGenerator.Difficulty difficulty) {
+        if (isRandomMode) {
+            this.seed = GameUtils.generateNewSeed();
+        } else {
+            this.seed = 69420;
+        }
+        this.generator = new SudokuGenerator(seed);
+        this.sudoku = new SudokuBoard();
+        this.sudoku.loadBoard(generator.generatePuzzle(difficulty));
+        this.difficulty = difficulty;
 
         gameLoop();
     }
 
     // load game
-    public static void startGame(GameData saveData) {
-        sudoku = saveData.loadBoard();
-        seed = saveData.getSeed();
-        difficulty = saveData.getDifficulty();
-        moves = saveData.getMoves();
-        generator = new SudokuGenerator(seed);
+    public void startGame(GameData saveData) {
+        this.isRandomMode = saveData.isRandomMode();
+        this.sudoku = saveData.loadBoard();
+        this.seed = saveData.getSeed();
+        this.difficulty = saveData.getDifficulty();
+        this.moves = saveData.getMoves();
+        this.generator = new SudokuGenerator(seed);
 
         gameLoop();
     }
 
-    private static void gameLoop() {
+    private void gameLoop() {
         String pendingMessage = null;
         ConsoleColors pendingColor = null;
 
@@ -245,7 +281,7 @@ public class SudokuGame {
                 }
                 case "export", "e" -> {
                     GameData saveData = new GameData();
-                    String dataString = saveData.exportData(sudoku, generator, difficulty, moves);
+                    String dataString = saveData.exportData(this);
                     pendingMessage = "Your save string (copy and save them in a notepad)\n" + dataString;
                     pendingColor = ConsoleColors.GREEN;
                 }
@@ -264,7 +300,7 @@ public class SudokuGame {
     }
 
     // for i/input cmds only
-    private static String inputHandler(String input) {
+    private String inputHandler(String input) {
         // arg split
         String[] args = input.split(" ");
         // basic pass validation
@@ -334,7 +370,7 @@ public class SudokuGame {
     }
 
     // interface rendering (frontend)
-    private static void renderBoard() {
+    private void renderBoard() {
         // difficulty color
         ConsoleColors diffColor = switch (difficulty) {
             case EASY -> ConsoleColors.GREEN_BOLD_BRIGHT;
@@ -344,7 +380,7 @@ public class SudokuGame {
         };
 
         String left = HEADER + "\n" +
-                ConsoleColors.colorize(" Difficulty: ", ConsoleColors.WHITE) + ConsoleColors.colorize(String.valueOf(difficulty), diffColor) + "\n" +
+                ConsoleColors.colorize(" Difficulty: ", ConsoleColors.WHITE) + ConsoleColors.colorize(difficulty + (this.isRandomMode ? "" : " (Predefined)"), diffColor) + "\n" +
                 ConsoleColors.colorize(" Seed: ", ConsoleColors.WHITE) + seed + "\n\n" +
                 ConsoleColors.colorize(" Moves: ", ConsoleColors.WHITE) + moves + "\n\n\n\n" +
                 " cmds " + ConsoleColors.colorize("for list of commands.", ConsoleColors.WHITE);
@@ -360,21 +396,20 @@ public class SudokuGame {
     }
 
 
-    private static void clearConsole() {
+    private void clearConsole() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    private static Scanner prompt(boolean inputWasValid) {
+    private Scanner prompt(boolean inputWasValid) {
         return prompt(inputWasValid, "Select an option: ", null, null);
     }
 
-    private static Scanner prompt(boolean inputWasValid, String promptText) {
+    private Scanner prompt(boolean inputWasValid, String promptText) {
         return prompt(inputWasValid, promptText, null, null);
     }
 
-    private static Scanner prompt(boolean inputWasValid, String promptText, String message, ConsoleColors messageColor) {
-        Scanner scanner = new Scanner(System.in);
+    private Scanner prompt(boolean inputWasValid, String promptText, String message, ConsoleColors messageColor) {
         ConsoleColors borderColor;
         // for color
         if (message != null) {
@@ -398,7 +433,7 @@ public class SudokuGame {
         return scanner;
     }
 
-    private static boolean promptConfirmation(String prompt) {
+    private boolean promptConfirmation(String prompt) {
         boolean isInputValid = true;
         while (true) {
             Scanner confirmScanner = prompt(isInputValid, prompt != null ? prompt : "Are you sure? (y/N): ");
@@ -416,7 +451,7 @@ public class SudokuGame {
     }
 
 
-    private static void printSideBySide(String left, String right) {
+    private void printSideBySide(String left, String right) {
         String[] leftLines = left.split("\n");
         String[] rightLines = right.split("\n");
         int printLines = Math.max(leftLines.length, rightLines.length);
@@ -440,7 +475,7 @@ public class SudokuGame {
         System.out.print(out);
     }
 
-    private static String stripAnsi(String input) {
+    private String stripAnsi(String input) {
         return input.replaceAll("\u001B\\[[;\\d]*m", "");
     }
 }

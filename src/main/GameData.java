@@ -11,6 +11,7 @@ public class GameData {
     private long seed;
     private SudokuGenerator.Difficulty difficulty;
     private int moves;
+    private boolean isRandomMode;
     private final ArrayList<String> inputData = new ArrayList<>();
 
     public long getSeed() {
@@ -25,12 +26,16 @@ public class GameData {
         return this.moves;
     }
 
+    public boolean isRandomMode() {
+        return isRandomMode;
+    }
+
     /**
      * Returns {@code True} or {@code False} depending on if the data has successfully loaded.
      *
      * @param dataEncoded - Base64 encoded {@code String} type variable that contains game data.
      *                    Format:
-     *                    {@code seed|difficulty|moves|values inputted by user}
+     *                    {@code random mode?|difficulty|seed|values inputted by user}
      */
     public String importData(String dataEncoded) {
         String data;
@@ -40,13 +45,13 @@ public class GameData {
             return "FALSE|Failed to decode data.";
         }
         // regex check
-        if (!data.matches("^-?\\d+(\\|[A-Za-z_]+(\\|\\d+)?(\\|\\d{3}(?:,\\d{3})*)?)?$")) {
-            return "FALSE|Invalid string format.";
+        if (!data.matches("^(?:true|false)\\|[A-Za-z_]+\\|-?\\d+(\\|\\d{3}(?:,\\d{3})*)?$")) {
+            return "FALSE|Invalid data format.";
         }
 
         String[] dataSplit = data.split("\\|");
 
-        if (dataSplit.length > 4 || dataSplit.length < 2) {
+        if (dataSplit.length > 4 || dataSplit.length < 3) {
             return "FALSE|Invalid data length.";
         }
 
@@ -60,17 +65,20 @@ public class GameData {
         }
         if (!diffValid) return "FALSE|Invalid difficulty value.";
 
-        this.seed = Long.parseLong(dataSplit[0]);
+        this.isRandomMode = Boolean.parseBoolean(dataSplit[0]);
         this.difficulty = SudokuGenerator.Difficulty.valueOf(dataSplit[1]);
+        try {
+            this.seed = Long.parseLong(dataSplit[2]);
+        } catch (NumberFormatException e) {
+            return "FALSE|Invalid seed.";
+        }
         this.moves = 0;
 
-        if (dataSplit.length >= 3) {
-            this.moves = Integer.parseInt(dataSplit[2]);
-        }
 
         if (dataSplit.length == 4) {
             String userInputs = dataSplit[3];
             String[] inputDataSplit = userInputs.split(",");
+            this.moves = inputDataSplit.length;
             // store into inputdata array
             this.inputData.addAll(Arrays.asList(inputDataSplit));
         }
@@ -97,10 +105,8 @@ public class GameData {
     }
 
 
-    public String exportData(SudokuBoard sudoku, SudokuGenerator generator, SudokuGenerator.Difficulty difficulty, int moves) {
-        this.seed = generator.getSeed();
-        this.difficulty = difficulty;
-
+    public String exportData(SudokuGame game) {
+        SudokuBoard sudoku = game.getSudoku();
         int[][] board = GameUtils.copyBoard(sudoku.getBoard());
 
         String dataString;
@@ -123,7 +129,7 @@ public class GameData {
             inputDataStr.append(data).append(",");
         }
 
-        dataString = this.seed + "|" + difficulty.name() + "|" + moves;
+        dataString = game.isRandomMode() + "|" + game.getDifficulty().name() + "|" + game.getSeed();
         // if contains user input
         if (!inputDataStr.isEmpty()) {
             inputDataStr.deleteCharAt(inputDataStr.length() - 1);
