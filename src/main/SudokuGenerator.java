@@ -6,6 +6,11 @@ public class SudokuGenerator {
     private final Random random;
     private int[][] board;
     private long seed;
+    private int numPrefilled;
+
+    public int getNumPrefilled() {
+        return numPrefilled;
+    }
 
     public SudokuGenerator() {
         this.random = new Random();
@@ -66,6 +71,7 @@ public class SudokuGenerator {
         }
 
         removeCells(this.random.nextInt(diff.getMin(), diff.getMax()));
+        this.numPrefilled = filledCells.size();
         return board;
     }
 

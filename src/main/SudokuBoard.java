@@ -4,6 +4,7 @@ public class SudokuBoard {
 
     private int[][] board;
     private int[][] originalBoard;
+    private int filled;
 
     public SudokuBoard() {
         this.board = new int[9][9];
@@ -16,6 +17,10 @@ public class SudokuBoard {
 
     public int[][] getOriginalBoard() {
         return this.originalBoard;
+    }
+
+    public int getFilled() {
+        return filled;
     }
 
     @Override
@@ -76,6 +81,13 @@ public class SudokuBoard {
         }
         if (!isCellEditable(row, col)) {
             throw new IllegalArgumentException("cell is not editable");
+        }
+        if (value != this.board[row][col]) {
+            if (value == 0) {
+                this.filled -= 1;
+            } else {
+                this.filled += 1;
+            }
         }
         this.board[row][col] = value;
     }

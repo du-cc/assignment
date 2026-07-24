@@ -40,6 +40,10 @@ public class SudokuGame {
         return difficulty;
     }
 
+    public int getMoves() {
+        return moves;
+    }
+
     public boolean isRandomMode() {
         return isRandomMode;
     }
@@ -189,6 +193,7 @@ public class SudokuGame {
         } else {
             this.seed = 69420;
         }
+        this.moves = 0;
         this.generator = new SudokuGenerator(seed);
         this.sudoku = new SudokuBoard();
         this.sudoku.loadBoard(generator.generatePuzzle(difficulty));
@@ -233,7 +238,7 @@ public class SudokuGame {
 
                     // help render
                     String[][] entries = {
-                            {"input/i " + ConsoleColors.colorize("<row> <column> <value>", ConsoleColors.YELLOW), "Inputs value into the board."},
+                            {"input/i " + ConsoleColors.colorize("<row><column><value>", ConsoleColors.YELLOW), "Inputs value into the board."},
                             {"check/c", "Checks if the board is completed."},
                             {"export/e", "Exports data of this board into a string."},
                             {"refresh/r", "Refreshes the board with another random seed."},
@@ -302,7 +307,7 @@ public class SudokuGame {
     // for i/input cmds only
     private String inputHandler(String input) {
         // arg split
-        String[] args = input.split(" ");
+        String[] args = input.split("");
         // basic pass validation
         // arg count
         if (args.length != 4) {
@@ -339,8 +344,8 @@ public class SudokuGame {
             message = "Invalid move!";
         }
 
-        // for remove cell (val=0)
-        if (!inputValid && val == 0) {
+        // for remove cell (val=0), edge case input = value in cell
+        if (!inputValid && val == 0 || val == sudoku.getBoard()[row][col]) {
             inputValid = true;
             message = null;
         }
@@ -382,7 +387,8 @@ public class SudokuGame {
         String left = HEADER + "\n" +
                 ConsoleColors.colorize(" Difficulty: ", ConsoleColors.WHITE) + ConsoleColors.colorize(difficulty + (this.isRandomMode ? "" : " (Predefined)"), diffColor) + "\n" +
                 ConsoleColors.colorize(" Seed: ", ConsoleColors.WHITE) + seed + "\n\n" +
-                ConsoleColors.colorize(" Moves: ", ConsoleColors.WHITE) + moves + "\n\n\n\n" +
+                ConsoleColors.colorize(" Moves: ", ConsoleColors.WHITE) + moves + "\n" +
+                ConsoleColors.colorize(" Filled: ", ConsoleColors.WHITE) + (sudoku.getFilled() + generator.getNumPrefilled()) + ConsoleColors.colorize("/" + 81, ConsoleColors.BLACK_BRIGHT) + "\n\n\n" +
                 " cmds " + ConsoleColors.colorize("for list of commands.", ConsoleColors.WHITE);
 
         if (highlightPos[0] != -1 && highlightPos[1] != -1) {

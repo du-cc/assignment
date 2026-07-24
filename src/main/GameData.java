@@ -35,7 +35,7 @@ public class GameData {
      *
      * @param dataEncoded - Base64 encoded {@code String} type variable that contains game data.
      *                    Format:
-     *                    {@code random mode?|difficulty|seed|values inputted by user}
+     *                    {@code random mode?|difficulty|seed|moves|values inputted by user}
      */
     public String importData(String dataEncoded) {
         String data;
@@ -45,13 +45,13 @@ public class GameData {
             return "FALSE|Failed to decode data.";
         }
         // regex check
-        if (!data.matches("^(?:true|false)\\|[A-Za-z_]+\\|-?\\d+(\\|\\d{3}(?:,\\d{3})*)?$")) {
+        if (!data.matches("^(?:true|false)\\|[A-Za-z_]+\\|-?\\d+\\|\\d+(\\|\\d{3}(?:,\\d{3})*)?$")) {
             return "FALSE|Invalid data format.";
         }
 
         String[] dataSplit = data.split("\\|");
 
-        if (dataSplit.length > 4 || dataSplit.length < 3) {
+        if (dataSplit.length > 5 || dataSplit.length < 4) {
             return "FALSE|Invalid data length.";
         }
 
@@ -74,15 +74,13 @@ public class GameData {
         }
         this.moves = 0;
 
-
-        if (dataSplit.length == 4) {
-            String userInputs = dataSplit[3];
+        if (dataSplit.length == 5) {
+            String userInputs = dataSplit[4];
             String[] inputDataSplit = userInputs.split(",");
-            this.moves = inputDataSplit.length;
+            this.moves = Integer.parseInt(dataSplit[3]);
             // store into inputdata array
             this.inputData.addAll(Arrays.asList(inputDataSplit));
         }
-
 
         return "TRUE";
     }
@@ -129,7 +127,7 @@ public class GameData {
             inputDataStr.append(data).append(",");
         }
 
-        dataString = game.isRandomMode() + "|" + game.getDifficulty().name() + "|" + game.getSeed();
+        dataString = game.isRandomMode() + "|" + game.getDifficulty().name() + "|" + game.getSeed() + "|" + game.getMoves();
         // if contains user input
         if (!inputDataStr.isEmpty()) {
             inputDataStr.deleteCharAt(inputDataStr.length() - 1);
