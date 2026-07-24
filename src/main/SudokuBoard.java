@@ -33,9 +33,7 @@ public class SudokuBoard {
 
     public String toString(boolean raw, boolean colored, int[] pos) {
         StringBuilder output = new StringBuilder();
-//        String header = "   1 2 3   4 5 6   7 8 9  ";
         String border = "+-------+-------+-------+";
-//        output.append(colored ? ConsoleColors.colorize(header, ConsoleColors.WHITE) : header).append("\n");
         // row
         for (int row = 0; row < 9; row++) {
             // border
@@ -46,10 +44,7 @@ public class SudokuBoard {
             StringBuilder line = new StringBuilder();
             // column
             for (int col = 0; col < 9; col++) {
-//                // number border
-//                if (col == 0) {
-//                    line.append(ConsoleColors.colorize(String.valueOf(row + 1), ConsoleColors.WHITE));
-//                }
+                // number border
                 // border
                 if (col % 3 == 0) {
                     line.append(colored ? ConsoleColors.colorize("| ", ConsoleColors.WHITE) : "| ");
@@ -70,10 +65,10 @@ public class SudokuBoard {
     }
 
 
-
-    public void displayBoard() {
-        System.out.println(toString(false, true));
-    }
+    // UNUSED: i just do my own renderer....
+//    public void displayBoard() {
+//        System.out.println(toString(false, true));
+//    }
 
     public void setValue(int row, int col, int value) {
         if (row < 0 || row >= 9 || col < 0 || col >= 9) {
