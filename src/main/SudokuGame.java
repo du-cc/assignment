@@ -4,8 +4,8 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class SudokuGame {
-
-    private static boolean DEBUG = true;
+//  TODO: TURN IT OFF IN PROD
+    private static final boolean DEBUG = true;
     private static final int INPUT_BORDER_WIDTH = 80;
 
     private static final String HEADER = (ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "_" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.RESET + "\n" +
@@ -76,6 +76,7 @@ public class SudokuGame {
             System.out.println(ConsoleColors.colorize("4.", ConsoleColors.BLUE_BOLD) + " " + ConsoleColors.colorize("Back", ConsoleColors.WHITE));
             // DEBUG
             if (DEBUG) {
+                System.out.println(ConsoleColors.colorize("DEBUG", ConsoleColors.YELLOW_UNDERLINED));
                 System.out.println(ConsoleColors.colorize("5.", ConsoleColors.YELLOW_BOLD) + " " + ConsoleColors.colorize("Filled", ConsoleColors.WHITE));
                 System.out.println(ConsoleColors.colorize("6.", ConsoleColors.YELLOW_BOLD) + " " + ConsoleColors.colorize("One more to filled", ConsoleColors.WHITE));
                 System.out.println(ConsoleColors.colorize("7.", ConsoleColors.YELLOW_BOLD) + " " + ConsoleColors.colorize("Empty", ConsoleColors.WHITE));
@@ -432,9 +433,7 @@ public class SudokuGame {
 
             int padding = leftWidth - stripAnsi(l).length();
 
-            out.append(l)
-                    .append(" ".repeat(Math.max(padding, 0)))
-                    .append("   ".repeat(5)) // gap between the two columns
+            out.append(l).repeat(" ", Math.max(padding, 0)).repeat("   ", 5) // gap between the two columns
                     .append(r)
                     .append("\n");
         }

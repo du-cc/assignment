@@ -68,7 +68,7 @@ public class GameData {
             this.moves = Integer.parseInt(dataSplit[2]);
         }
 
-        if (dataSplit.length >= 4) {
+        if (dataSplit.length == 4) {
             String userInputs = dataSplit[3];
             String[] inputDataSplit = userInputs.split(",");
             // store into inputdata array
