@@ -31,7 +31,6 @@ public class GameData {
         // regex check
         // ^-?\d+(\|[A-Za-z]+(\|\d{3}(?:,\d{3})*)?)?$
         if (!data.matches("^-?\\d+(\\|[A-Za-z]+(\\|\\d{3}(?:,\\d{3})*)?)?$")) {
-            System.out.println("regex failed");
             return false;
         }
 
@@ -48,7 +47,6 @@ public class GameData {
             this.inputData.addAll(Arrays.asList(inputDataSplit));
         }
         if (dataSplit.length > 3 || dataSplit.length == 1) {
-            System.out.println("length failed");
             return false;
         }
 
