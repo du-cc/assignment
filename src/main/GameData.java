@@ -1,13 +1,16 @@
 package main;
 
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 
 public class GameData {
 
     private long seed;
     private SudokuGenerator.Difficulty difficulty;
+    private int moves;
     private String userInputs;
     private ArrayList<String> inputData = new ArrayList<>();
 
@@ -19,38 +22,61 @@ public class GameData {
         return this.difficulty;
     }
 
+    public int getMoves() {
+        return this.moves;
+    }
+
     /**
      * Returns {@code True} or {@code False} depending on if the data has successfully loaded.
      *
      * @param data - {@code String} type variable that contains game data.
      *             Format:
-     *             {@code seed|difficulty|values inputted by user}
+     *             {@code seed|difficulty|moves|values inputted by user}
      */
-    public boolean importData(String data) {
-
+    public String importData(String dataEncoded) {
+String data;
+        try {
+             data = new String(Base64.getDecoder().decode(dataEncoded), StandardCharsets.UTF_8);
+        } catch (IllegalArgumentException e) {
+            return "FALSE|Failed to decode data.";
+        }
         // regex check
         // ^-?\d+(\|[A-Za-z]+(\|\d{3}(?:,\d{3})*)?)?$
-        if (!data.matches("^-?\\d+(\\|[A-Za-z]+(\\|\\d{3}(?:,\\d{3})*)?)?$")) {
-            return false;
+        if (!data.matches("^-?\\d+(\\|[A-Za-z_]+(\\|\\d+)?(\\|\\d{3}(?:,\\d{3})*)?)?$")) {
+            return "FALSE|Invalid string format.";
         }
 
         String[] dataSplit = data.split("\\|");
 
+        // difficulty check
+        boolean diffValid = false;
+        for (int i = 0; i < SudokuGenerator.Difficulty.values().length; i++) {
+            if (dataSplit[1].equals(SudokuGenerator.Difficulty.values()[i].name().toUpperCase())) {
+                diffValid = true;
+                break;
+            }
+        }
+        if (!diffValid) return "FALSE|Invalid difficulty value.";
+
         this.seed = Long.parseLong(dataSplit[0]);
         if (dataSplit.length >= 2) {
             this.difficulty = SudokuGenerator.Difficulty.valueOf(dataSplit[1]);
+            this.moves = 0;
+            if (dataSplit.length >= 3) {
+                this.moves = Integer.parseInt(dataSplit[2]);
+            }
         }
-        if (dataSplit.length >= 3) {
-            this.userInputs = dataSplit[2];
+        if (dataSplit.length >= 4) {
+            this.userInputs = dataSplit[3];
             String[] inputDataSplit = userInputs.split(",");
             // store into inputdata array
             this.inputData.addAll(Arrays.asList(inputDataSplit));
         }
-        if (dataSplit.length > 3 || dataSplit.length == 1) {
-            return false;
+        if (dataSplit.length > 4 || dataSplit.length <= 2) {
+            return "FALSE|Invalid data length.";
         }
 
-        return true;
+        return "TRUE";
     }
 
 
@@ -72,7 +98,7 @@ public class GameData {
 
 
 
-    public String exportData(SudokuBoard sudoku, SudokuGenerator generator, SudokuGenerator.Difficulty difficulty) {
+    public String exportData(SudokuBoard sudoku, SudokuGenerator generator, SudokuGenerator.Difficulty difficulty, int moves) {
         this.seed = generator.getSeed();
         this.difficulty = difficulty;
 
@@ -99,15 +125,14 @@ public class GameData {
             inputDataStr.append(data).append(",");
         }
 
-        dataString = Long.toString(this.seed) + "|" + difficulty.name();
+        dataString = Long.toString(this.seed) + "|" + difficulty.name() + "|" + moves;
                 // if contains user input
         if(!inputDataStr.isEmpty()) {
             inputDataStr.deleteCharAt(inputDataStr.length() - 1);
             dataString += "|" + inputDataStr.toString();
         }
 
-
-        return dataString;
+        return Base64.getEncoder().encodeToString(dataString.getBytes(StandardCharsets.UTF_8)).replace("=", "");
     }
 }
 

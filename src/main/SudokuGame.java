@@ -1,11 +1,12 @@
 package main;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class SudokuGame {
 
-    private static final Scanner SCANNER = new Scanner(System.in);
-    private static final int DIVIDER_WIDTH = 80;
+    private static boolean DEBUG = true;
+    private static final int INPUT_BORDER_WIDTH = 80;
 
     private static final String HEADER = (ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + "_" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.RESET + "\n" +
             ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + "_" + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + "|" + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + "|" + ConsoleColors.CYAN_BOLD + "_" + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + "_" + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + "_" + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.RESET + "\n" +
@@ -14,12 +15,12 @@ public class SudokuGame {
             ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RED_BOLD + " " + ConsoleColors.YELLOW_BOLD + " " + ConsoleColors.GREEN_BOLD + " " + ConsoleColors.CYAN_BOLD + " " + ConsoleColors.BLUE_BOLD + " " + ConsoleColors.PURPLE_BOLD + " " + ConsoleColors.RESET
     );
 
-
+    //  main runner
     public static void main(String[] args) {
         selectMode();
     }
 
-
+    //  start/load/exit
     public static void selectMode() {
         boolean inputIsValid = true;
 
@@ -36,7 +37,7 @@ public class SudokuGame {
 
             try {
                 int input = Integer.parseInt(line.trim());
-                System.out.println(ConsoleColors.colorize("─".repeat(DIVIDER_WIDTH), inputIsValid ? ConsoleColors.BLACK_BRIGHT : ConsoleColors.RED));
+                System.out.println(ConsoleColors.colorize("─".repeat(INPUT_BORDER_WIDTH), inputIsValid ? ConsoleColors.BLACK_BRIGHT : ConsoleColors.RED));
 
                 switch (input) {
                     case 1 -> {
@@ -60,6 +61,7 @@ public class SudokuGame {
         }
     }
 
+    //  1. start game
     public static void selectDifficulty() {
         boolean inputIsValid = true;
 
@@ -72,13 +74,19 @@ public class SudokuGame {
             System.out.println(ConsoleColors.colorize("2.", ConsoleColors.BLUE_BOLD) + " " + ConsoleColors.colorize("Medium", ConsoleColors.YELLOW_BOLD_BRIGHT));
             System.out.println(ConsoleColors.colorize("3.", ConsoleColors.BLUE_BOLD) + " " + ConsoleColors.colorize("Hard", ConsoleColors.RED_BOLD_BRIGHT));
             System.out.println(ConsoleColors.colorize("4.", ConsoleColors.BLUE_BOLD) + " " + ConsoleColors.colorize("Back", ConsoleColors.WHITE));
+            // DEBUG
+            if (DEBUG) {
+                System.out.println(ConsoleColors.colorize("5.", ConsoleColors.YELLOW_BOLD) + " " + ConsoleColors.colorize("Filled", ConsoleColors.WHITE));
+                System.out.println(ConsoleColors.colorize("6.", ConsoleColors.YELLOW_BOLD) + " " + ConsoleColors.colorize("One more to filled", ConsoleColors.WHITE));
+                System.out.println(ConsoleColors.colorize("7.", ConsoleColors.YELLOW_BOLD) + " " + ConsoleColors.colorize("Empty", ConsoleColors.WHITE));
+            }
 
             Scanner inputScanner = prompt(inputIsValid);
             String line = inputScanner.nextLine();
 
             try {
                 int input = Integer.parseInt(line.trim());
-                System.out.println(ConsoleColors.colorize("─".repeat(DIVIDER_WIDTH), inputIsValid ? ConsoleColors.BLACK_BRIGHT : ConsoleColors.RED));
+                System.out.println(ConsoleColors.colorize("─".repeat(INPUT_BORDER_WIDTH), inputIsValid ? ConsoleColors.BLACK_BRIGHT : ConsoleColors.RED));
 
                 if (input >= 1 && input <= 3) {
                     startGame(SudokuGenerator.Difficulty.values()[input - 1]);
@@ -88,13 +96,19 @@ public class SudokuGame {
                     selectMode();
                     return;
                 }
-            } catch (NumberFormatException e) {
-                // fall through to inputIsValid = false below
+
+                // DEBUG
+                if (input >= 5 && input <= 7 && DEBUG) {
+                    startGame(SudokuGenerator.Difficulty.values()[input - 2]);
+                    return;
+                }
+            } catch (NumberFormatException _) {
             }
             inputIsValid = false;
         }
     }
 
+    // 2. load game
     public static void loadGame() {
         String message = null;
 
@@ -114,8 +128,10 @@ public class SudokuGame {
             }
 
             GameData saveData = new GameData();
-            if (!saveData.importData(input)) {
-                message = "Invalid save string!";
+            String output = saveData.importData(input);
+            String[] outSplit = output.split("\\|");
+            if (!Boolean.parseBoolean(outSplit[0])) {
+                message = outSplit[1];
                 continue;
             }
 
@@ -125,13 +141,16 @@ public class SudokuGame {
     }
 
 
-// game loop
+    // game loop
+    // env
     private static SudokuBoard sudoku;
     private static SudokuGenerator generator;
     private static long seed;
     private static SudokuGenerator.Difficulty difficulty;
     private static final int[] highlightPos = {-1, -1};
+    private static int moves = 0;
 
+    // new game
     public static void startGame(SudokuGenerator.Difficulty difficulty) {
         seed = GameUtils.generateNewSeed();
         generator = new SudokuGenerator(seed);
@@ -142,10 +161,12 @@ public class SudokuGame {
         gameLoop();
     }
 
+    // load game
     public static void startGame(GameData saveData) {
         sudoku = saveData.loadBoard();
         seed = saveData.getSeed();
         difficulty = saveData.getDifficulty();
+        moves = saveData.getMoves();
         generator = new SudokuGenerator(seed);
 
         gameLoop();
@@ -159,6 +180,7 @@ public class SudokuGame {
             clearConsole();
             renderBoard();
 
+            // default red err msg color
             ConsoleColors promptColor = pendingMessage != null && pendingColor == null
                     ? ConsoleColors.RED
                     : pendingColor;
@@ -202,10 +224,17 @@ public class SudokuGame {
 
 
                     System.out.println("\n" + ConsoleColors.colorize("press ENTER to continue", ConsoleColors.BLACK_BRIGHT));
-                    SCANNER.nextLine();
+                    Scanner enterScanner = new Scanner(System.in);
+                    enterScanner.nextLine();
                 }
-                case "menu", "m" -> selectMode(); // does not return
-                case "quit", "q" -> System.exit(0);
+                case "menu", "m" -> {
+                    boolean confirm = promptConfirmation(ConsoleColors.colorize("Don't forget to export first!", ConsoleColors.RED_BOLD_BRIGHT)+"\n Are you sure you want to return to menu? (y/N): ");
+                    if (confirm) selectMode();
+                }
+                case "quit", "q" -> {
+                    boolean confirm = promptConfirmation(ConsoleColors.colorize("Don't forget to export first!", ConsoleColors.RED_BOLD_BRIGHT)+"\n Are you sure you want to quit? (y/N): ");
+                    if (confirm) System.exit(0);
+                }
                 case "refresh", "r" -> startGame(difficulty); // recurses; does not return
                 case "reset", "t" -> sudoku.resetBoard();
                 case "check", "c" -> {
@@ -215,82 +244,97 @@ public class SudokuGame {
                 }
                 case "export", "e" -> {
                     GameData saveData = new GameData();
-                    String dataString = saveData.exportData(sudoku, generator, difficulty);
+                    String dataString = saveData.exportData(sudoku, generator, difficulty, moves);
                     pendingMessage = "Your save string (copy and save them in a notepad)\n" + dataString;
                     pendingColor = ConsoleColors.GREEN;
                 }
                 default -> {
                     if (input.contains("input") || input.contains("i")) {
-                        pendingMessage = commandHandler(input);
-                        // no color set here: matches original, defaults to RED via the null-color fallback above
+                        pendingMessage = inputHandler(input);
+                        // special case for board complete
+                        if (Objects.equals(pendingMessage, "board_complete")) {
+                            pendingMessage = "You have completed this board!! :D";
+                            pendingColor = ConsoleColors.GREEN;
+                        }
                     }
                 }
             }
         }
     }
 
-
-    private static String commandHandler(String input) {
+    // for i/input cmds only
+    private static String inputHandler(String input) {
+        // arg split
         String[] args = input.split(" ");
+        // basic pass validation
+        // arg count
         if (args.length != 4) {
             return "Numbers of arguments must equal 3.";
         }
-        if (!args[0].equals("i")) {
-            return null; // silently ignored, matching original behavior
-        }
 
+        // integer check
         for (int i = 1; i < args.length; i++) {
             if (!args[i].matches("^\\d+$")) {
                 return "Arguments must be an integer.";
             }
         }
 
+        // secondary check before passing to class
         int row = Integer.parseInt(args[1]) - 1;
         int col = Integer.parseInt(args[2]) - 1;
         int val = Integer.parseInt(args[3]);
 
-        // Range check (0 is allowed for value only, meaning "clear cell").
+        // in range check
         for (int i = 1; i < args.length; i++) {
-            if (i == 3 && args[i].equals("0")) continue;
+            if (i == 3 && args[i].equals("0")) continue; // clear cell
             if (!GameUtils.isValidInput(Integer.parseInt(args[i]))) {
                 return "Arguments must be in range of 1-9";
             }
         }
 
-        // The move check and the editable check both always run (the
-        // editable check is not skipped just because the move was already
-        // invalid), so if a cell is both an invalid move AND not editable,
-        // "Cell is not editable." is what's shown, overwriting "Invalid move!".
         boolean inputValid = true;
         String message = null;
 
+        // advance class check
+        // move check
         if (!SudokuValidator.isValidMove(sudoku.getBoard(), row, col, val)) {
             inputValid = false;
             message = "Invalid move!";
         }
 
-        // Special case: 0 (clear cell) is always allowed through the move check.
+        // for remove cell (val=0)
         if (!inputValid && val == 0) {
             inputValid = true;
             message = null;
         }
 
+        // editable check
         if (!sudoku.isCellEditable(row, col)) {
             inputValid = false;
             message = "Cell is not editable.";
         }
 
+        // FAIL
         if (!inputValid) {
             return message;
         }
 
+        // PASS
         sudoku.setValue(row, col, val);
         highlightPos[0] = row;
         highlightPos[1] = col;
+        moves += 1;
+
+        // complete check
+        if (GameUtils.isBoardComplete(sudoku.getBoard())) {
+            return "board_complete";
+        }
         return null;
     }
 
+    // interface rendering (frontend)
     private static void renderBoard() {
+        // difficulty color
         ConsoleColors diffColor = switch (difficulty) {
             case EASY -> ConsoleColors.GREEN_BOLD_BRIGHT;
             case MEDIUM -> ConsoleColors.YELLOW_BOLD_BRIGHT;
@@ -301,10 +345,11 @@ public class SudokuGame {
         String left = HEADER + "\n" +
                 ConsoleColors.colorize(" Difficulty: ", ConsoleColors.WHITE) + ConsoleColors.colorize(String.valueOf(difficulty), diffColor) + "\n" +
                 ConsoleColors.colorize(" Seed: ", ConsoleColors.WHITE) + seed + "\n\n" +
-                ConsoleColors.colorize(" Moves: ", ConsoleColors.WHITE) + "67" + "\n\n\n\n" +
+                ConsoleColors.colorize(" Moves: ", ConsoleColors.WHITE) + moves + "\n\n\n\n" +
                 " cmds " + ConsoleColors.colorize("for list of commands.", ConsoleColors.WHITE);
 
         if (highlightPos[0] != -1 && highlightPos[1] != -1) {
+            // last move (last input cell)
             printSideBySide(left, sudoku.toString(false, true, highlightPos));
             highlightPos[0] = -1;
             highlightPos[1] = -1;
@@ -313,9 +358,6 @@ public class SudokuGame {
         }
     }
 
-    // ------------------------------------------------------------------
-    // Console rendering helpers
-    // ------------------------------------------------------------------
 
     private static void clearConsole() {
         System.out.print("\033[H\033[2J");
@@ -326,25 +368,50 @@ public class SudokuGame {
         return prompt(inputWasValid, "Select an option: ", null, null);
     }
 
-    private static Scanner prompt(boolean inputWasValid, String promptText, String message, ConsoleColors messageColor) {
-        ConsoleColors dividerColor;
-        if (message != null) {
-            dividerColor = messageColor;
-        } else {
-            dividerColor = inputWasValid ? ConsoleColors.BLACK_BRIGHT : ConsoleColors.RED;
-        }
-        System.out.print(dividerColor + "─".repeat(DIVIDER_WIDTH) + ConsoleColors.RESET + "\n");
+    private static Scanner prompt(boolean inputWasValid, String promptText) {
+        return prompt(inputWasValid, promptText, null, null);
+    }
 
+    private static Scanner prompt(boolean inputWasValid, String promptText, String message, ConsoleColors messageColor) {
+        Scanner scanner = new Scanner(System.in);
+        ConsoleColors borderColor;
+        // for color
+        if (message != null) {
+            borderColor = messageColor;
+        } else {
+            borderColor = inputWasValid ? ConsoleColors.BLACK_BRIGHT : ConsoleColors.RED;
+        }
+        System.out.print(borderColor + "─".repeat(INPUT_BORDER_WIDTH) + ConsoleColors.RESET + "\n");
+
+        // for invalid
         if (!inputWasValid) {
             System.out.println(" " + ConsoleColors.colorize("Invalid input!", ConsoleColors.RED_BRIGHT));
         }
+        // message color
         if (message != null) {
             ConsoleColors brightColor = ConsoleColors.valueOf(messageColor.name() + "_BRIGHT");
             System.out.println(" " + ConsoleColors.colorize(message, brightColor));
         }
 
         System.out.print(" " + ConsoleColors.colorize(promptText, ConsoleColors.WHITE));
-        return SCANNER;
+        return scanner;
+    }
+
+    private static boolean promptConfirmation(String prompt) {
+        boolean isInputValid = true;
+        while (true) {
+            Scanner confirmScanner = prompt(isInputValid, prompt != null ? prompt : "Are you sure? (y/N): ");
+            String confirmInput = confirmScanner.nextLine().toLowerCase();
+            switch (confirmInput) {
+                case "y", "yes" -> {
+                    return true;
+                }
+                case "n", "no", "" -> {
+                    return false;
+                }
+                default -> {}
+            }
+        }
     }
 
 

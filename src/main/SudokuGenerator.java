@@ -26,7 +26,8 @@ public class SudokuGenerator {
         HARD(20, 25),
 
         // DEBUGGING PURPOSES ONLY
-        FILLED(81, 80),
+        FILLED(81, 81),
+        ONE_TO_FILLED(80, 80),
         EMPTY(0, 0);
 
         private final int min;
@@ -59,7 +60,7 @@ public class SudokuGenerator {
             board = GameUtils.generateEmptyBoard();
             return board;
         }
-        if (diff.equals(Difficulty.FILLED)) {
+        if (diff.equals(Difficulty.FILLED) || diff.equals(Difficulty.ONE_TO_FILLED)) {
             removeCells(diff.getMax());
             return board;
         }
