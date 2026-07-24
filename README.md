@@ -2,13 +2,14 @@
 
 ## Checklist
 ### main.SudokuGame
-- [ ] main
-  - [ ] UI
-- [ ] startGame
-- [ ] selectMode
+#### Cleanup this piece of spaghetti.
+- [x] main
+  - [x] UI
+- [x] startGame
+- [x] selectMode
   - [x] start game (random)
-  - [ ] load game (seed)
-- [ ] Export input data (numbers user inputted)
+  - [x] load game (seed)
+- [x] Export input data (numbers user inputted)
 
 ### main.SudokuBoard
 - [x] displayBoard
