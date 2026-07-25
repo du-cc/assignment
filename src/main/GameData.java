@@ -8,6 +8,7 @@ import java.util.Base64;
 
 public class GameData {
 
+    private SudokuGenerator generator;
     private long seed;
     private SudokuGenerator.Difficulty difficulty;
     private int moves;
@@ -28,6 +29,10 @@ public class GameData {
 
     public boolean isRandomMode() {
         return isRandomMode;
+    }
+
+    public SudokuGenerator getGenerator() {
+        return generator;
     }
 
     /**
@@ -91,7 +96,7 @@ public class GameData {
         SudokuBoard sudoku = new SudokuBoard();
         SudokuGenerator generator = new SudokuGenerator(this.seed);
         sudoku.loadBoard(generator.generatePuzzle(this.difficulty));
-
+        this.generator = generator;
         // place all values
         for (String data : this.inputData) {
             String[] dataSplit = data.split("");
@@ -127,7 +132,7 @@ public class GameData {
             inputDataStr.append(data).append(",");
         }
 
-        dataString = game.isRandomMode() + "|" + game.getDifficulty().name() + "|" + game.getSeed() + "|" + game.getMoves();
+        dataString = game.isRandomMode() + "|" + game.getDifficulty().name() + "|" + game.getGenerator().getSeed() + "|" + game.getMoves();
         // if contains user input
         if (!inputDataStr.isEmpty()) {
             inputDataStr.deleteCharAt(inputDataStr.length() - 1);

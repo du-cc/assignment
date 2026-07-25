@@ -32,10 +32,6 @@ public class SudokuGame {
         return generator;
     }
 
-    public long getSeed() {
-        return seed;
-    }
-
     public SudokuGenerator.Difficulty getDifficulty() {
         return difficulty;
     }
@@ -209,7 +205,7 @@ public class SudokuGame {
         this.seed = saveData.getSeed();
         this.difficulty = saveData.getDifficulty();
         this.moves = saveData.getMoves();
-        this.generator = new SudokuGenerator(seed);
+        this.generator = saveData.getGenerator();
 
         gameLoop();
     }
