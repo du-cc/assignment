@@ -80,7 +80,6 @@ public class SudokuGame {
                     }
                     case 1, 2 -> {
                         this.isRandomMode = input == 1;
-                        System.out.println(isRandomMode);
                         selectDifficulty();
                         return;
                     }
@@ -234,7 +233,7 @@ public class SudokuGame {
 
                     // help render
                     String[][] entries = {
-                            {"input/i " + ConsoleColors.colorize("<row><column><value>", ConsoleColors.YELLOW), "Inputs value into the board."},
+                            {"input/i " + ConsoleColors.colorize("<row><column><value>", ConsoleColors.YELLOW), "Inputs value into the board. (eg: i123)"},
                             {"check/c", "Checks if the board is completed."},
                             {"export/e", "Exports data of this board into a string."},
                             {"refresh/r", "Refreshes the board with another random seed."},

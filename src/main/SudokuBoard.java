@@ -94,6 +94,7 @@ public class SudokuBoard {
 
     public void resetBoard() {
         this.board = GameUtils.copyBoard(this.originalBoard);
+        this.filled = 0;
     }
 
     public void loadBoard(int[][] newBoard) {
