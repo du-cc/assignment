@@ -64,10 +64,8 @@ public class SudokuGame {
             System.out.println(ConsoleColors.colorize("3.", ConsoleColors.BLUE_BOLD) + " Load Game");
             System.out.println(ConsoleColors.colorize("4.", ConsoleColors.BLUE_BOLD) + " " + ConsoleColors.colorize("Exit", ConsoleColors.WHITE));
 
-            prompt(inputIsValid);
-            String line = scanner.nextLine();
+            String input = prompt(inputIsValid).toLowerCase();
 
-            String input = line.trim();
             System.out.println(ConsoleColors.colorize("─".repeat(INPUT_BORDER_WIDTH), inputIsValid ? ConsoleColors.BLACK_BRIGHT : ConsoleColors.RED));
 
             switch (input) {
@@ -119,11 +117,10 @@ public class SudokuGame {
                 System.out.println(ConsoleColors.colorize("7.", ConsoleColors.YELLOW_BOLD) + " " + ConsoleColors.colorize("Empty", ConsoleColors.WHITE));
             }
 
-            prompt(inputIsValid);
-            String line = scanner.nextLine();
+            String inputStr = prompt(inputIsValid).toLowerCase();
 
             try {
-                int input = Integer.parseInt(line.trim());
+                int input = Integer.parseInt(inputStr);
                 System.out.println(ConsoleColors.colorize("─".repeat(INPUT_BORDER_WIDTH), inputIsValid ? ConsoleColors.BLACK_BRIGHT : ConsoleColors.RED));
 
                 if (input >= 1 && input <= 3) {
@@ -157,9 +154,8 @@ public class SudokuGame {
 
             ConsoleColors messageColor = message != null ? ConsoleColors.RED : null;
 
-            prompt(true, "Enter your save string (m to return): ", message, messageColor);
+            String input = prompt(true, "Enter your save string (m to return): ", message, messageColor);
 
-            String input = scanner.nextLine();
             if (input.equals("m")) {
                 selectMode();
                 return;
@@ -219,9 +215,9 @@ public class SudokuGame {
             ConsoleColors promptColor = pendingMessage != null && pendingColor == null
                     ? ConsoleColors.RED
                     : pendingColor;
-            prompt(true, "> ", pendingMessage, promptColor);
 
-            String input = scanner.nextLine();
+            String input = prompt(true, "> ", pendingMessage, promptColor).toLowerCase();
+
             pendingMessage = null;
             pendingColor = null;
 
@@ -400,15 +396,15 @@ public class SudokuGame {
         System.out.flush();
     }
 
-    private void prompt(boolean inputWasValid) {
-        prompt(inputWasValid, "Select an option: ", null, null);
+    private String prompt(boolean inputWasValid) {
+        return prompt(inputWasValid, "Select an option: ", null, null);
     }
 
-    private void prompt(boolean inputWasValid, String promptText) {
-        prompt(inputWasValid, promptText, null, null);
+    private String prompt(boolean inputWasValid, String promptText) {
+        return prompt(inputWasValid, promptText, null, null);
     }
 
-    private void prompt(boolean inputWasValid, String promptText, String message, ConsoleColors messageColor) {
+    private String prompt(boolean inputWasValid, String promptText, String message, ConsoleColors messageColor) {
         ConsoleColors borderColor;
         // for color
         if (message != null) {
@@ -429,14 +425,15 @@ public class SudokuGame {
         }
 
         System.out.print(" " + ConsoleColors.colorize(promptText, ConsoleColors.WHITE));
+
+        return scanner.nextLine().trim();
     }
 
     private boolean promptConfirmation(String prompt) {
         boolean isInputValid = true;
         while (true) {
-            prompt(isInputValid, prompt != null ? prompt : "Are you sure? (y/N): ");
-            String confirmInput = scanner.nextLine().toLowerCase();
-            switch (confirmInput) {
+            String input = prompt(isInputValid, prompt != null ? prompt : "Are you sure? (y/N): ").toLowerCase();
+            switch (input) {
                 case "y", "yes" -> {
                     return true;
                 }

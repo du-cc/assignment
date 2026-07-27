@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80836094-20aa-4139-aeeb-8543bef973c2" name="Changes" comment="ver 2.6&#10;+ bug fix on reset&#10;+ clarify input command usage">
+    <list default="true" id="80836094-20aa-4139-aeeb-8543bef973c2" name="Changes" comment="ver 2.6.1&#10;+ minor cleanup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/SudokuGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SudokuGame.java" afterDir="false" />
     </list>
@@ -47,61 +47,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="7.670104701240635E-233" />
-      <entry key="MS500" value="3.932563053229561E-47" />
-      <entry key="S2" value="4.016558675889957E-12" />
-      <entry key="S5" value="5.057838226007431E-5" />
-      <entry key="S10" value="0.012194801049274508" />
-      <entry key="S30" value="0.48870112309449865" />
-      <entry key="S60" value="1.5774957737616009" />
-      <entry key="M2" value="4.668876369622211" />
-      <entry key="M5" value="14.455689994230193" />
-      <entry key="M10" value="26.458109786843018" />
-      <entry key="M15" value="35.9173699819248" />
-      <entry key="M30" value="63.705286578724994" />
-      <entry key="H1" value="120.68758982608294" />
-      <entry key="H2" value="209.30888492615492" />
-      <entry key="H4" value="363.96576087837883" />
-      <entry key="D1" value="1496.6074934598494" />
-      <entry key="W1" value="2544.0725500798685" />
+      <entry key="MS100" value="3.174746559050872E-19" />
+      <entry key="MS500" value="2.172595303233926E-4" />
+      <entry key="S2" value="0.1836269724237751" />
+      <entry key="S5" value="0.7731486804461207" />
+      <entry key="S10" value="1.4375622732198121" />
+      <entry key="S30" value="3.9322824162907084" />
+      <entry key="S60" value="7.0303381899199495" />
+      <entry key="M2" value="10.601387429895558" />
+      <entry key="M5" value="16.173759239474624" />
+      <entry key="M10" value="25.917342393987067" />
+      <entry key="M15" value="35.811938185969304" />
+      <entry key="M30" value="64.76240605663429" />
+      <entry key="H1" value="122.38450312374913" />
+      <entry key="H2" value="214.08987511094182" />
+      <entry key="H4" value="371.6514556392956" />
+      <entry key="D1" value="1510.6695009626924" />
+      <entry key="W1" value="2568.684252135523" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000000013391832" />
-      <entry key="S2" value="1.0062250420683827" />
-      <entry key="S5" value="1.1743025713151591" />
-      <entry key="S10" value="1.6825726675180457" />
-      <entry key="S30" value="3.0872030441341898" />
-      <entry key="S60" value="4.060351791720216" />
-      <entry key="M2" value="5.785510429766968" />
-      <entry key="M5" value="13.100870065244536" />
-      <entry key="M10" value="24.503456221760157" />
-      <entry key="M15" value="33.16498404093129" />
-      <entry key="M30" value="53.63639844098188" />
-      <entry key="H1" value="91.26673566739751" />
-      <entry key="H2" value="149.228180891864" />
-      <entry key="H4" value="249.66340905766333" />
-      <entry key="D1" value="972.8934091049289" />
-      <entry key="W1" value="1585.0223294674595" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0000000001416451" />
+      <entry key="S5" value="1.0001149450400155" />
+      <entry key="S10" value="1.0108204488169805" />
+      <entry key="S30" value="1.3370548742920993" />
+      <entry key="S60" value="2.1665783941245707" />
+      <entry key="M2" value="3.4808615333438375" />
+      <entry key="M5" value="6.279094958869341" />
+      <entry key="M10" value="13.110540222377372" />
+      <entry key="M15" value="20.89061602798084" />
+      <entry key="M30" value="42.39360970094907" />
+      <entry key="H1" value="81.52637242211345" />
+      <entry key="H2" value="142.22839124256632" />
+      <entry key="H4" value="244.997138871724" />
+      <entry key="D1" value="972.8749291124061" />
+      <entry key="W1" value="1591.916991513314" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.0012885819441141547" />
-      <entry key="MS500" value="0.26425451073715905" />
-      <entry key="S2" value="0.7220592876164643" />
-      <entry key="S5" value="1.0354941010679977" />
-      <entry key="S10" value="1.5964827452883947" />
-      <entry key="S30" value="3.501580963765598" />
-      <entry key="S60" value="5.580389607338967" />
-      <entry key="M2" value="10.405953115485142" />
-      <entry key="M5" value="27.501961454147573" />
-      <entry key="M10" value="50.904873976039404" />
-      <entry key="M15" value="69.0291502162296" />
-      <entry key="M30" value="117.29655060368711" />
-      <entry key="H1" value="211.91468969777233" />
-      <entry key="H2" value="358.5038937116738" />
-      <entry key="H4" value="613.6004511809432" />
-      <entry key="D1" value="2469.480991603114" />
-      <entry key="W1" value="4129.090181890076" />
+      <entry key="MS100" value="0.022097086912079608" />
+      <entry key="MS500" value="0.46662046986368955" />
+      <entry key="S2" value="0.9736862099723678" />
+      <entry key="S5" value="1.630923846524621" />
+      <entry key="S10" value="2.344191413279614" />
+      <entry key="S30" value="5.18711420106351" />
+      <entry key="S60" value="9.115079995675442" />
+      <entry key="M2" value="14.012400787673489" />
+      <entry key="M5" value="22.40647946387827" />
+      <entry key="M10" value="38.98747369864584" />
+      <entry key="M15" value="56.66250816573646" />
+      <entry key="M30" value="107.11728883061927" />
+      <entry key="H1" value="203.87404412492668" />
+      <entry key="H2" value="356.2859811546082" />
+      <entry key="H4" value="616.6201125567229" />
+      <entry key="D1" value="2483.5244812163087" />
+      <entry key="W1" value="4160.596520456364" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -196,7 +196,7 @@
       <workItem from="1784901011414" duration="9138000" />
       <workItem from="1784951681125" duration="666000" />
       <workItem from="1784954958700" duration="1053000" />
-      <workItem from="1785119582688" duration="530000" />
+      <workItem from="1785119582688" duration="1697000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -414,14 +414,21 @@
       <option name="project" value="LOCAL" />
       <updated>1784955645315</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="ver 2.6.1&#10;+ minor cleanup">
+      <option name="closed" value="true" />
+      <created>1785120238807</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1785120238807</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="not working, wip" />
     <MESSAGE value="working generator" />
     <MESSAGE value="modify to become more &quot;object&quot;" />
     <MESSAGE value="cleanup + remove cell implementation" />
@@ -446,6 +453,7 @@
     <MESSAGE value="ver 2.5&#10;+ refined game data generator logic&#10;+ bug fix on wrong filled data on load game" />
     <MESSAGE value="ver 2.6" />
     <MESSAGE value="ver 2.6&#10;+ bug fix on reset&#10;+ clarify input command usage" />
-    <option name="LAST_COMMIT_MESSAGE" value="ver 2.6&#10;+ bug fix on reset&#10;+ clarify input command usage" />
+    <MESSAGE value="ver 2.6.1&#10;+ minor cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="ver 2.6.1&#10;+ minor cleanup" />
   </component>
 </project>

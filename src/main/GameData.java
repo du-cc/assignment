@@ -77,12 +77,12 @@ public class GameData {
         } catch (NumberFormatException e) {
             return "FALSE|Invalid seed.";
         }
-        this.moves = 0;
+
+        this.moves = Integer.parseInt(dataSplit[3]);
 
         if (dataSplit.length == 5) {
             String userInputs = dataSplit[4];
             String[] inputDataSplit = userInputs.split(",");
-            this.moves = Integer.parseInt(dataSplit[3]);
             // store into inputdata array
             this.inputData.addAll(Arrays.asList(inputDataSplit));
         }
