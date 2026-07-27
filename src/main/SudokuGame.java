@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class SudokuGame {
-//  TODO: TURN IT OFF IN PROD
+    //  TODO: TURN IT OFF IN PROD
     private final static boolean DEBUG = true;
     private final static int INPUT_BORDER_WIDTH = 80;
 
@@ -57,46 +57,44 @@ public class SudokuGame {
             clearConsole();
 
             System.out.println(HEADER);
-            if (sudoku != null) System.out.println(ConsoleColors.colorize("0.", ConsoleColors.CYAN_BOLD) + " Continue game");
+            if (sudoku != null)
+                System.out.println(ConsoleColors.colorize("0.", ConsoleColors.CYAN_BOLD) + " Continue game");
             System.out.println(ConsoleColors.colorize("1.", ConsoleColors.BLUE_BOLD) + " Start Game (Random)");
             System.out.println(ConsoleColors.colorize("2.", ConsoleColors.BLUE_BOLD) + " Start Game (Predefined)");
             System.out.println(ConsoleColors.colorize("3.", ConsoleColors.BLUE_BOLD) + " Load Game");
             System.out.println(ConsoleColors.colorize("4.", ConsoleColors.BLUE_BOLD) + " " + ConsoleColors.colorize("Exit", ConsoleColors.WHITE));
 
-            Scanner inputScanner = prompt(inputIsValid);
-            String line = inputScanner.nextLine();
+            prompt(inputIsValid);
+            String line = scanner.nextLine();
 
-            try {
-                int input = Integer.parseInt(line.trim());
-                System.out.println(ConsoleColors.colorize("─".repeat(INPUT_BORDER_WIDTH), inputIsValid ? ConsoleColors.BLACK_BRIGHT : ConsoleColors.RED));
+            String input = line.trim();
+            System.out.println(ConsoleColors.colorize("─".repeat(INPUT_BORDER_WIDTH), inputIsValid ? ConsoleColors.BLACK_BRIGHT : ConsoleColors.RED));
 
-                switch (input) {
-                    case 0 -> {
-                        if (sudoku != null) {
-                            gameLoop();
-                        } else {
-                            inputIsValid = false;
-                        }
+            switch (input) {
+                case "0" -> {
+                    if (sudoku != null) {
+                        gameLoop();
+                    } else {
+                        inputIsValid = false;
                     }
-                    case 1, 2 -> {
-                        this.isRandomMode = input == 1;
-                        selectDifficulty();
-                        return;
-                    }
-                    case 3 -> {
-                        loadGame();
-                        return;
-                    }
-                    case 4 -> {
-                        System.out.println("Thanks for playing!");
-                        System.exit(0);
-                        return;
-                    }
-                    default -> inputIsValid = false;
                 }
-            } catch (NumberFormatException e) {
-                inputIsValid = false;
+                case "1", "2" -> {
+                    this.isRandomMode = input.equals("1");
+                    selectDifficulty();
+                    return;
+                }
+                case "3" -> {
+                    loadGame();
+                    return;
+                }
+                case "4" -> {
+                    System.out.println("Thanks for playing!");
+                    System.exit(0);
+                    return;
+                }
+                default -> inputIsValid = false;
             }
+
         }
     }
 
@@ -121,8 +119,8 @@ public class SudokuGame {
                 System.out.println(ConsoleColors.colorize("7.", ConsoleColors.YELLOW_BOLD) + " " + ConsoleColors.colorize("Empty", ConsoleColors.WHITE));
             }
 
-            Scanner inputScanner = prompt(inputIsValid);
-            String line = inputScanner.nextLine();
+            prompt(inputIsValid);
+            String line = scanner.nextLine();
 
             try {
                 int input = Integer.parseInt(line.trim());
@@ -159,9 +157,9 @@ public class SudokuGame {
 
             ConsoleColors messageColor = message != null ? ConsoleColors.RED : null;
 
-            Scanner inputScanner = prompt(true, "Enter your save string (m to return): ", message, messageColor);
+            prompt(true, "Enter your save string (m to return): ", message, messageColor);
 
-            String input = inputScanner.nextLine();
+            String input = scanner.nextLine();
             if (input.equals("m")) {
                 selectMode();
                 return;
@@ -221,9 +219,9 @@ public class SudokuGame {
             ConsoleColors promptColor = pendingMessage != null && pendingColor == null
                     ? ConsoleColors.RED
                     : pendingColor;
-            Scanner inputScanner = prompt(true, "> ", pendingMessage, promptColor);
+            prompt(true, "> ", pendingMessage, promptColor);
 
-            String input = inputScanner.nextLine();
+            String input = scanner.nextLine();
             pendingMessage = null;
             pendingColor = null;
 
@@ -265,11 +263,11 @@ public class SudokuGame {
                     enterScanner.nextLine();
                 }
                 case "menu", "m" -> {
-                    boolean confirm = promptConfirmation(ConsoleColors.colorize("Don't forget to export first!", ConsoleColors.RED_BOLD_BRIGHT)+"\n Are you sure you want to return to menu? (y/N): ");
+                    boolean confirm = promptConfirmation(ConsoleColors.colorize("Don't forget to export first!", ConsoleColors.RED_BOLD_BRIGHT) + "\n Are you sure you want to return to menu? (y/N): ");
                     if (confirm) selectMode();
                 }
                 case "quit", "q" -> {
-                    boolean confirm = promptConfirmation(ConsoleColors.colorize("Don't forget to export first!", ConsoleColors.RED_BOLD_BRIGHT)+"\n Are you sure you want to quit? (y/N): ");
+                    boolean confirm = promptConfirmation(ConsoleColors.colorize("Don't forget to export first!", ConsoleColors.RED_BOLD_BRIGHT) + "\n Are you sure you want to quit? (y/N): ");
                     if (confirm) System.exit(0);
                 }
                 case "refresh", "r" -> startGame(difficulty); // recurses; does not return
@@ -402,15 +400,15 @@ public class SudokuGame {
         System.out.flush();
     }
 
-    private Scanner prompt(boolean inputWasValid) {
-        return prompt(inputWasValid, "Select an option: ", null, null);
+    private void prompt(boolean inputWasValid) {
+        prompt(inputWasValid, "Select an option: ", null, null);
     }
 
-    private Scanner prompt(boolean inputWasValid, String promptText) {
-        return prompt(inputWasValid, promptText, null, null);
+    private void prompt(boolean inputWasValid, String promptText) {
+        prompt(inputWasValid, promptText, null, null);
     }
 
-    private Scanner prompt(boolean inputWasValid, String promptText, String message, ConsoleColors messageColor) {
+    private void prompt(boolean inputWasValid, String promptText, String message, ConsoleColors messageColor) {
         ConsoleColors borderColor;
         // for color
         if (message != null) {
@@ -431,14 +429,13 @@ public class SudokuGame {
         }
 
         System.out.print(" " + ConsoleColors.colorize(promptText, ConsoleColors.WHITE));
-        return scanner;
     }
 
     private boolean promptConfirmation(String prompt) {
         boolean isInputValid = true;
         while (true) {
-            Scanner confirmScanner = prompt(isInputValid, prompt != null ? prompt : "Are you sure? (y/N): ");
-            String confirmInput = confirmScanner.nextLine().toLowerCase();
+            prompt(isInputValid, prompt != null ? prompt : "Are you sure? (y/N): ");
+            String confirmInput = scanner.nextLine().toLowerCase();
             switch (confirmInput) {
                 case "y", "yes" -> {
                     return true;
@@ -446,7 +443,8 @@ public class SudokuGame {
                 case "n", "no", "" -> {
                     return false;
                 }
-                default -> {}
+                default -> {
+                }
             }
         }
     }
