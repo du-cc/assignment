@@ -169,7 +169,12 @@ public class SudokuGame {
                 continue;
             }
 
-            startGame(saveData);
+            try {
+                startGame(saveData);
+            } catch (Exception e) {
+                message = "Error while loading board: " + e.getMessage();
+                continue;
+            }
             return;
         }
     }

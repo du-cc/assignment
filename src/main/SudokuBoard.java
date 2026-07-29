@@ -80,7 +80,7 @@ public class SudokuBoard {
             throw new IndexOutOfBoundsException("row/col must be between 0 and 8");
         }
         if (!isCellEditable(row, col)) {
-            throw new IllegalArgumentException("cell is not editable");
+            throw new IllegalArgumentException("cell " + row + ", " + col + " is not editable ");
         }
         if (value != this.board[row][col]) {
             if (value == 0) {
@@ -99,7 +99,7 @@ public class SudokuBoard {
 
     public void loadBoard(int[][] newBoard) {
         if (newBoard.length != 9 || newBoard[0].length != 9) {
-            throw new IndexOutOfBoundsException("row/col must be between 0 and 8");
+            throw new IndexOutOfBoundsException("invalid board size");
         }
 
         this.board = GameUtils.copyBoard(newBoard);
