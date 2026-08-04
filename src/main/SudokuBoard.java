@@ -70,10 +70,11 @@ public class SudokuBoard {
     }
 
 
-    // UNUSED: i just do my own renderer....
-//    public void displayBoard() {
-//        System.out.println(toString(false, true));
-//    }
+
+    // UNUSED: i just did my own renderer.... Needed for side by side printing.
+    public void displayBoard() {
+        System.out.println(toString(false, true));
+    }
 
     public void setValue(int row, int col, int value) {
         if (row < 0 || row >= 9 || col < 0 || col >= 9) {

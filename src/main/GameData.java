@@ -35,6 +35,7 @@ public class GameData {
         return generator;
     }
 
+
     /**
      * Returns {@code True} or {@code False} depending on if the data has successfully loaded.
      *
@@ -42,22 +43,24 @@ public class GameData {
      *                    Format:
      *                    {@code random mode?|difficulty|seed|moves|values inputted by user}
      */
-    public String importData(String dataEncoded) {
+    public void importData(String dataEncoded) {
         String data;
         try {
             data = new String(Base64.getDecoder().decode(dataEncoded), StandardCharsets.UTF_8);
         } catch (IllegalArgumentException e) {
-            return "FALSE|Failed to decode data.";
+            throw new IllegalArgumentException("Invalid Base64: " + e.getMessage());
         }
         // regex check
         if (!data.matches("^(?:true|false)\\|[A-Za-z_]+\\|-?\\d+\\|\\d+(\\|\\d{3}(?:,\\d{3})*)?$")) {
-            return "FALSE|Invalid data format.";
+            throw new IllegalArgumentException("Invalid data format");
+//            return "FALSE|Invalid data format.";
         }
 
         String[] dataSplit = data.split("\\|");
 
         if (dataSplit.length > 5 || dataSplit.length < 4) {
-            return "FALSE|Invalid data length.";
+            throw new IllegalArgumentException("Invalid data length");
+//            return "FALSE|Invalid data length.";
         }
 
         // difficulty check
@@ -68,14 +71,14 @@ public class GameData {
                 break;
             }
         }
-        if (!diffValid) return "FALSE|Invalid difficulty value.";
+        if (!diffValid) throw new IllegalArgumentException("Invalid difficulty value");
 
         this.isRandomMode = Boolean.parseBoolean(dataSplit[0]);
         this.difficulty = SudokuGenerator.Difficulty.valueOf(dataSplit[1]);
         try {
             this.seed = Long.parseLong(dataSplit[2]);
         } catch (NumberFormatException e) {
-            return "FALSE|Invalid seed.";
+            throw new IllegalArgumentException("Invalid seed value");
         }
 
         this.moves = Integer.parseInt(dataSplit[3]);
@@ -86,8 +89,6 @@ public class GameData {
             // store into inputdata array
             this.inputData.addAll(Arrays.asList(inputDataSplit));
         }
-
-        return "TRUE";
     }
 
 

@@ -162,10 +162,11 @@ public class SudokuGame {
             }
 
             GameData saveData = new GameData();
-            String output = saveData.importData(input);
-            String[] outSplit = output.split("\\|");
-            if (!Boolean.parseBoolean(outSplit[0])) {
-                message = outSplit[1];
+
+            try {
+                saveData.importData(input);
+            } catch (IllegalArgumentException e) {
+                message = e.getMessage();
                 continue;
             }
 
