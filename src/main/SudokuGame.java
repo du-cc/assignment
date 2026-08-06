@@ -280,8 +280,7 @@ public class SudokuGame {
                     pendingColor = complete ? ConsoleColors.GREEN : ConsoleColors.YELLOW;
                 }
                 case "export", "e" -> {
-                    GameData saveData = new GameData();
-                    String dataString = saveData.exportData(this);
+                    String dataString = GameData.exportData(this);
                     pendingMessage = "Your save string (copy and save them in a notepad)\n" + dataString;
                     pendingColor = ConsoleColors.GREEN;
                 }

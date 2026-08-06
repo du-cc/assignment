@@ -109,11 +109,12 @@ public class GameData {
     }
 
 
-    public String exportData(SudokuGame game) {
+    public static String exportData(SudokuGame game) {
         SudokuBoard sudoku = game.getSudoku();
         int[][] board = GameUtils.copyBoard(sudoku.getBoard());
 
         String dataString;
+        ArrayList<String> inputData = new ArrayList<>();
 
         // add entries (userinput data)
         for (int row = 0; row < 9; row++) {
@@ -121,7 +122,7 @@ public class GameData {
                 if (sudoku.isCellEditable(row, col)) {
                     int val = board[row][col];
                     if (val != 0) {
-                        this.inputData.add(row + Integer.toString(col) + val);
+                        inputData.add(row + Integer.toString(col) + val);
                     }
                 }
             }
