@@ -39,6 +39,7 @@ public class SudokuBoard {
     public String toString(boolean raw, boolean colored, int[] pos) {
         StringBuilder output = new StringBuilder();
         String border = "+-------+-------+-------+";
+
         // row
         for (int row = 0; row < 9; row++) {
             // border
@@ -46,29 +47,27 @@ public class SudokuBoard {
                 output.append(colored ? ConsoleColors.colorize(border, ConsoleColors.WHITE) : border).append("\n");
             }
 
-            StringBuilder line = new StringBuilder();
             // column
             for (int col = 0; col < 9; col++) {
                 // number border
-                // border
                 if (col % 3 == 0) {
-                    line.append(colored ? ConsoleColors.colorize("| ", ConsoleColors.WHITE) : "| ");
+                    output.append(colored ? ConsoleColors.colorize("| ", ConsoleColors.WHITE) : "| ");
                 }
 
                 int val = this.board[row][col];
-                if (pos != null) if (pos[0] == row && pos[1] == col) line.append(ConsoleColors.BLUE_BACKGROUND);
-                line.append(val == 0 ? ". " : val + " ");
-                line.append(ConsoleColors.RESET);
+                if (colored && pos != null && pos[0] == row && pos[1] == col) {
+                    output.append(ConsoleColors.BLUE_BACKGROUND);
+                }
+                output.append(val == 0 ? ". " : val + " ");
+                if (colored) output.append(ConsoleColors.RESET);
             }
-            line.append(colored ? ConsoleColors.colorize("|", ConsoleColors.WHITE) : "|").append("\n");
-            output.append(line);
+            output.append(colored ? ConsoleColors.colorize("|", ConsoleColors.WHITE) : "|").append("\n");
         }
 
         if (!raw) output.append(colored ? ConsoleColors.colorize(border, ConsoleColors.WHITE) : border);
 
         return output.toString();
     }
-
 
 
     // UNUSED: i just did my own renderer.... Needed for side by side printing.
