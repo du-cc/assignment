@@ -58,7 +58,12 @@ public class SudokuBoard {
                 if (colored && pos != null && pos[0] == row && pos[1] == col) {
                     output.append(ConsoleColors.BLUE_BACKGROUND);
                 }
+
+                // predefined?
+                if (originalBoard[row][col] == 0) output.append(ConsoleColors.GREEN);
+
                 output.append(val == 0 ? ". " : val + " ");
+
                 if (colored) output.append(ConsoleColors.RESET);
             }
             output.append(colored ? ConsoleColors.colorize("|", ConsoleColors.WHITE) : "|").append("\n");

@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80836094-20aa-4139-aeeb-8543bef973c2" name="Changes" comment="ver 2.6.1&#10;+ another cleanup&#10;+ minor fix" />
+    <list default="true" id="80836094-20aa-4139-aeeb-8543bef973c2" name="Changes" comment="ver 2.6.1&#10;+ another cleanup&#10;+ minor fix">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/SudokuBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/SudokuBoard.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,8 +23,12 @@
   <component name="Git.Merge.Settings">
     <option name="BRANCH" value="origin/dit" />
   </component>
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="origin/dit" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -44,61 +51,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000000062051928" />
-      <entry key="S2" value="1.009892522159692" />
-      <entry key="S5" value="1.2563723547079126" />
-      <entry key="S10" value="1.9376380825217512" />
-      <entry key="S30" value="3.878093184915375" />
-      <entry key="S60" value="5.994529249153406" />
-      <entry key="M2" value="9.175315586112834" />
-      <entry key="M5" value="19.87433507348106" />
-      <entry key="M10" value="37.77491702950784" />
-      <entry key="M15" value="53.092853181939454" />
-      <entry key="M30" value="90.62468700622725" />
-      <entry key="H1" value="154.27591670123954" />
-      <entry key="H2" value="253.35405829160786" />
-      <entry key="H4" value="417.1905107083637" />
-      <entry key="D1" value="1568.1644438850105" />
-      <entry key="W1" value="2643.2383407491534" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="6.595078898988577E-231" />
+      <entry key="S2" value="2.8612267982524114E-58" />
+      <entry key="S5" value="1.2492672196021829E-23" />
+      <entry key="S10" value="7.334792423239561E-12" />
+      <entry key="S30" value="7.240212147184875E-4" />
+      <entry key="S60" value="0.07544296057333609" />
+      <entry key="M2" value="0.7751790534496623" />
+      <entry key="M5" value="3.143875092982931" />
+      <entry key="M10" value="5.217587299256327" />
+      <entry key="M15" value="7.494475874112203" />
+      <entry key="M30" value="22.822252182582638" />
+      <entry key="H1" value="72.35612262493358" />
+      <entry key="H2" value="172.43221758931367" />
+      <entry key="H4" value="344.6793229760226" />
+      <entry key="D1" value="1522.2851898225665" />
+      <entry key="W1" value="2640.3380938170194" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="3.284186436971226E-73" />
-      <entry key="S2" value="1.1361724821642331E-18" />
-      <entry key="S5" value="1.343936242113744E-7" />
-      <entry key="S10" value="8.05181843376564E-4" />
-      <entry key="S30" value="0.31619677538974567" />
-      <entry key="S60" value="1.5041855033287324" />
-      <entry key="M2" value="3.8317616364523057" />
-      <entry key="M5" value="10.253911223952771" />
-      <entry key="M10" value="19.761164368192787" />
-      <entry key="M15" value="28.45752862691559" />
-      <entry key="M30" value="52.05142611181582" />
-      <entry key="H1" value="93.7280539597881" />
-      <entry key="H2" value="158.79888454340366" />
-      <entry key="H4" value="265.584867874584" />
-      <entry key="D1" value="1001.4247153397739" />
-      <entry key="W1" value="1631.546209448994" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000000308961003" />
+      <entry key="S2" value="1.0132586899286908" />
+      <entry key="S5" value="1.1809718708605974" />
+      <entry key="S10" value="1.4821367612554885" />
+      <entry key="S30" value="2.3454675429705034" />
+      <entry key="S60" value="3.3214195080542477" />
+      <entry key="M2" value="4.777238878078716" />
+      <entry key="M5" value="7.214946029910735" />
+      <entry key="M10" value="8.862717716675174" />
+      <entry key="M15" value="10.276004247779204" />
+      <entry key="M30" value="19.219845553707714" />
+      <entry key="H1" value="49.700119752921886" />
+      <entry key="H2" value="113.47778256397956" />
+      <entry key="H4" value="224.59425018474272" />
+      <entry key="D1" value="977.1339182332015" />
+      <entry key="W1" value="1634.9705009542104" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="3.159377819340139E-5" />
-      <entry key="MS500" value="0.12586944403945544" />
-      <entry key="S2" value="0.60035375962248" />
-      <entry key="S5" value="1.0134935112070027" />
-      <entry key="S10" value="1.7460623566231166" />
-      <entry key="S30" value="4.061601743255041" />
-      <entry key="S60" value="7.380527233664512" />
-      <entry key="M2" value="12.905707126553526" />
-      <entry key="M5" value="30.037245526515616" />
-      <entry key="M10" value="57.454468103194785" />
-      <entry key="M15" value="81.47659743886886" />
-      <entry key="M30" value="142.6158127430159" />
-      <entry key="H1" value="247.95447648697345" />
-      <entry key="H2" value="412.11320051067435" />
-      <entry key="H4" value="682.7427277291504" />
-      <entry key="D1" value="2569.568372140931" />
-      <entry key="W1" value="4274.779674846726" />
+      <entry key="MS100" value="0.002919627438740113" />
+      <entry key="MS500" value="0.31121855896757633" />
+      <entry key="S2" value="0.7502309935716203" />
+      <entry key="S5" value="0.995039452496053" />
+      <entry key="S10" value="1.3203794247640628" />
+      <entry key="S30" value="2.2455614468836447" />
+      <entry key="S60" value="3.3241547678918635" />
+      <entry key="M2" value="5.493908474754446" />
+      <entry key="M5" value="10.316294978104358" />
+      <entry key="M10" value="14.051976421828183" />
+      <entry key="M15" value="17.74772143961028" />
+      <entry key="M30" value="42.02021086279223" />
+      <entry key="H1" value="122.02953951397275" />
+      <entry key="H2" value="285.88117657463334" />
+      <entry key="H4" value="569.2457115869354" />
+      <entry key="D1" value="2499.3987846798154" />
+      <entry key="W1" value="4275.3037036232745" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -110,42 +117,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Prime.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SudokuGame.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.SudokuGeneratorTest.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/ducc/Assignments/JavaProgramming/DIT/assets/readme&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/home/ducc/Assignments/JavaProgramming/DIT/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.ChangelistConflict&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.Prime.executor": "Run",
+    "Application.SudokuGame.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.SudokuGeneratorTest.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "master",
+    "git.auto.fetch.suggestion.counter": "1",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/ducc/Assignments/JavaProgramming/DIT/assets/readme",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/home/ducc/Assignments/JavaProgramming/DIT/src/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "project.propVCSSupport.ChangelistConflict",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets/readme" />
