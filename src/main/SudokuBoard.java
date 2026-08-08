@@ -60,7 +60,7 @@ public class SudokuBoard {
                 }
 
                 // predefined?
-                if (originalBoard[row][col] == 0) output.append(ConsoleColors.GREEN);
+                if (originalBoard[row][col] == 0) output.append(ConsoleColors.CYAN);
 
                 output.append(val == 0 ? ". " : val + " ");
 
