@@ -9,6 +9,7 @@ public class SudokuBoard {
     public SudokuBoard() {
         this.board = new int[9][9];
         this.originalBoard = new int[9][9];
+        this.filled = 0;
     }
 
     public int[][] getBoard() {
@@ -81,12 +82,10 @@ public class SudokuBoard {
     }
 
     public void setValue(int row, int col, int value) {
-        if (row < 0 || row >= 9 || col < 0 || col >= 9) {
-            throw new IndexOutOfBoundsException("row/col must be between 0 and 8");
-        }
-        if (!isCellEditable(row, col)) {
-            throw new IllegalArgumentException("cell " + row + ", " + col + " is not editable ");
-        }
+        if (row < 0 || row >= 9 || col < 0 || col >= 9) throw new IndexOutOfBoundsException("row/col must be between 0 and 8");
+        if (value < 0 || value > 9) throw new IndexOutOfBoundsException("value must be between 0 to 9");
+        if (!isCellEditable(row, col)) throw new IllegalArgumentException("cell " + row + ", " + col + " is not editable ");
+
         if (value != this.board[row][col]) {
             if (value == 0) {
                 this.filled -= 1;
